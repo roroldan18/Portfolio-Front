@@ -1,0 +1,29 @@
+<div class="sectionInfo">
+  <div class="leftSide">
+    <h2>Habilidades</h2>
+  </div>
+  <div class="rightSide">
+    <button class="btn"><img src="./assets/add.png" alt="Agregar"></button>
+    <button class="btn"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
+  </div>
+</div>
+
+<div class="sectionInfo flex-wrap">
+
+  <ng-container  *ngFor="let skill of skills">
+    <div class="col-xl-3 col-lg-6 mb-4 position-relative divProgress">
+  
+      <div class="text-center">
+        <img src={{this.skill.icon}} alt={{this.skill.name}} class="imgHabil">
+        <p>{{this.skill.name}}</p>
+      </div>
+      <circle-progress
+        class="circleProgress"
+        [percent]=this.skill.ability_percentage
+        [animationDuration]="500"
+      ></circle-progress>
+    </div>
+  </ng-container>
+
+</div>
+

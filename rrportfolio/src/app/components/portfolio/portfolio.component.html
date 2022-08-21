@@ -1,0 +1,27 @@
+<div class="sectionInfo">
+  <div class="leftSide">
+    <h2>Portafolio</h2>
+  </div>
+  <div class="rightSide">
+    <button class="btn"><img src="./assets/add.png" alt="Agregar"></button>
+  </div>
+</div>
+<!-- Renderizando Proyectos-->
+<div class="sectionInfo flex-wrap">
+  <ng-container *ngFor="let sPort of portfolio">
+    <div class="leftSide  mt-5">
+      <div>
+        <a href={{sPort.url}}><img src={{sPort.image}} class="logoSmall" alt={{sPort.name}}></a>
+        <div>
+          <h5>{{sPort.name}}</h5>
+          <p>{{sPort.description}}</p>
+          <b>{{sPort.start_date.split('-')[1]}}/{{sPort.start_date.split('-')[0]}} - {{sPort.end_date.split('-')[1]}}/{{sPort.end_date.split('-')[0]}}</b>
+        </div>
+      </div>
+    </div>
+    <div class="rightSide mt-5">
+      <button class="btn"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
+      <button class="btn"><img src="./assets/delete.png" alt="borrar"></button>
+    </div>
+  </ng-container>
+</div>

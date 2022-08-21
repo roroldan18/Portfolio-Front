@@ -1,0 +1,21 @@
+<nav class="navbar navbar-expand-lg">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="https://argentinaprograma.inti.gob.ar/"><img src="./assets/logoArgPro.jpeg" alt="Logo Argentina Programa" class="logoSmall"></a>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item flex-row align-items-center">
+          <a class="nav-link active" aria-current="page" href="https://argentinaprograma.inti.gob.ar/">Argentina Programa</a>
+        </li>
+        <li class="nav-item">
+          <p class="nav-link">#YoProgramo</p>
+        </li>
+      </ul>
+      <div class="navbar-nav flex flex-row align-items-center">
+        <span *ngFor="let socialNetwork of socialNetworks">
+          <app-icon [url]="socialNetwork.url" [name]="socialNetwork.name" [icon]="socialNetwork.icon" [downloadable]="socialNetwork.downloadable" ></app-icon>
+        </span>
+        <a routerLink="/login"><button type="button" class="btn btn-primary m- 1 iconNav">Login</button></a>
+      </div>
+    </div>
+  </div>
+</nav>

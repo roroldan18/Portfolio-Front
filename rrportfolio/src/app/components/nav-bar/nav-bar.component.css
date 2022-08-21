@@ -1,0 +1,13 @@
+li{
+  display: flex;
+  align-items: center;
+}
+
+
+a {
+  display: flex;
+  align-items: center;
+}
+li p {
+  margin: 0;
+}

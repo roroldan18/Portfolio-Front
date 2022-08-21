@@ -1,0 +1,152 @@
+{
+  "social_network": [
+    {
+      "name": "Linkedin",
+      "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
+      "icon": "fa-brands fa-linkedin",
+      "downloadable": "false"
+    },
+    {
+      "name": "Github",
+      "url": "https://github.com/roroldan18/",
+      "icon": "fa-brands fa-github",
+      "downloadable": "false"
+    },
+    {
+      "name": "CV - Rodrigo Roldán",
+      "url": "./assets/CV.pdf",
+      "icon": "fa-solid fa-download",
+      "downloadable": "true"
+    }
+  ],
+  "profile": [
+    {
+      "idProfile": "1",
+      "idUser":"1",
+      "banner_image": "../../../assets/example.jpg",
+      "profile_image": "../../../assets/perfil.jpg",
+      "name": "Rodrigo",
+      "last_name": "Roldán",
+      "title": "Desarrollador Full Stack",
+      "province": "Buenos Aires",
+      "country": "Argentina",
+      "telephone": "+34 697 739 523",
+      "email": "rodrigo_roldan18@hotmail.com",
+      "about_me":"Matemático, fisico e informático argentino considerado por muchos como el padre de la computación en Argentina.",
+      "logo": "../../../assets/logoUniversidad.png"
+    }
+  ],
+  "experience": [
+    {
+      "idExperience": "1",
+      "company": "iúnigo Argentina compañía de seguros",
+      "title": "Tax analyst",
+      "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
+      "time_work" : "Full Time",
+      "start_date": "2018-01-01",
+      "end_date": "2019-01-01",
+      "logo": "../../../assets/logoUniversidad.png",
+      "idUser": "1",
+      "isActual": "false"
+    },
+    {
+      "idExperience": "2",
+      "company": "RSM",
+      "title": "Tax Sr",
+      "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
+      "time_work" : "Full Time",
+      "start_date": "2014-07-01",
+      "end_date": "2019-04-15",
+      "logo": "../../../assets/logoUniversidad.png",
+      "idUser": "1",
+      "isActual": "false"
+    }
+  ],
+  "education": [
+    {
+      "idEducation": "1",
+      "career_title": "Contador Público",
+      "educational_establishment": "Universidad Argentina de la Empresa",
+      "image": "../../../assets/logoUniversidad.png",
+      "start_date": "2014-07-01",
+      "end_date": "2019-04-15",
+      "user_iduser": "1",
+      "isActual": "false"
+    },
+    {
+      "idEducation": "2",
+      "career_title": "Master en Derecho Tributario",
+      "educational_establishment": "Universidad Austral",
+      "image": "../../../assets/logoUniversidad.png",
+      "start_date": "2016-07-01",
+      "end_date": "2020-04-15",
+      "user_iduser": "1",
+      "isActual": "false"
+    }
+  ],
+  "skills": [
+    {
+      "idSkill": "1",
+      "name": "HTML",
+      "icon": "../../../assets/habilidades/html-5.png",
+      "ability_percentage": 80,
+      "user_iduser": "1"
+    },
+    {
+      "idSkill": "2",
+      "name": "CSS",
+      "icon": "../../../assets/habilidades/html-5.png",
+      "ability_percentage": 90,
+      "user_iduser": "1"
+    },
+    {
+      "idSkill": "1",
+      "name": "Angular",
+      "icon": "../../../assets/habilidades/html-5.png",
+      "ability_percentage": 60,
+      "user_iduser": "1"
+    }
+  ],
+  "portfolio": [
+    {
+      "idPorfolio": "1",
+      "name": "Proyecto 1",
+      "description":"bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
+      "image": "../../../assets/habilidades/html-5.png",
+      "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
+      "user_iduser": "1",
+      "start_date": "2014-07-01",
+      "end_date": "2019-04-15"
+    },
+    {
+      "idPorfolio": "2",
+      "name": "Proyecto 2",
+      "description":"bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
+      "image": "../../../assets/habilidades/html-5.png",
+      "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
+      "user_iduser": "1",
+      "start_date": "2014-07-01",
+      "end_date": "2019-04-15"
+    },
+    {
+      "idPorfolio": "3",
+      "name": "Proyecto 3",
+      "description":"bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
+      "image": "../../../assets/habilidades/html-5.png",
+      "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
+      "user_iduser": "1",
+      "start_date": "2014-07-01",
+      "end_date": "2019-04-15"
+    },
+    {
+      "idPorfolio": "4",
+      "name": "Proyecto 4",
+      "description":"bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
+      "image": "../../../assets/habilidades/html-5.png",
+      "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
+      "user_iduser": "1",
+      "start_date": "2014-07-01",
+      "end_date": "2019-04-15"
+    }
+  ]
+}

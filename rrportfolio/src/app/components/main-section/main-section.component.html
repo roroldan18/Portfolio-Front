@@ -1,0 +1,24 @@
+<div class="jumbotron jumbotron-fluid imgCover" [style.background]="'url('+ this.personalInfo.banner_image + ')'">
+  <button class="btn btn-light"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
+</div>
+<div class="sectionInfo">
+  <div class="leftSide">
+    <div>
+      <div class="divImg">
+        <img src={{this.personalInfo.profile_image}} alt="imagen de perfil" class="imgPerfil">
+      </div>
+      <button class="btn btnEditPerfil"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
+    </div>
+    <h3>{{this.personalInfo.name}} {{this.personalInfo.last_name}}</h3>
+    <p>{{this.personalInfo.title}}</p>
+    <p>{{this.personalInfo.province}}, {{this.personalInfo.country}}. <a href="">Información de contacto.</a></p>
+    <div>
+      <button class="btn btn-primary">Tengo interes en</button>
+      <button class="btn">Añadir Sección</button>
+    </div>
+  </div>
+
+  <div class="rightSide">
+      <img src={{this.personalInfo.logo}} alt="Logo Universidad" class="logoSmall">
+  </div>
+</div>
