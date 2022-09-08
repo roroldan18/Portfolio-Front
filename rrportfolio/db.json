@@ -47,7 +47,7 @@
       "end_date": "2019-01-01",
       "logo": "../../../assets/logoUniversidad.png",
       "idUser": "1",
-      "isActual": "false"
+      "isActual": false
     },
     {
       "id": "2",
@@ -56,54 +56,61 @@
       "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
       "time_work": "Full Time",
       "start_date": "2014-07-01",
-      "end_date": "2019-04-15",
+      "end_date": "",
       "logo": "../../../assets/logoUniversidad.png",
       "idUser": "1",
-      "isActual": "false"
+      "isActual": true
     }
   ],
   "education": [
     {
-      "idEducation": "1",
+      "id": "1",
       "career_title": "Contador Público",
       "educational_establishment": "Universidad Argentina de la Empresa",
       "image": "../../../assets/logoUniversidad.png",
       "start_date": "2014-07-01",
       "end_date": "2019-04-15",
       "user_iduser": "1",
-      "isActual": "false"
+      "isActual": false
     },
     {
-      "idEducation": "2",
+      "id": "2",
       "career_title": "Master en Derecho Tributario",
-      "educational_establishment": "Universidad Austral",
+      "educational_establishment": "Universidad Australopitecus",
       "image": "../../../assets/logoUniversidad.png",
       "start_date": "2016-07-01",
-      "end_date": "2020-04-15",
+      "end_date": "2022-09-20T22:00:00.000Z",
       "user_iduser": "1",
-      "isActual": "false"
+      "isActual": false
     }
   ],
   "skills": [
     {
-      "idSkill": "1",
-      "name": "HTML",
+      "id": "1",
+      "name": "Angular",
       "icon": "../../../assets/habilidades/html-5.png",
-      "ability_percentage": 80,
+      "ability_percentage": "40",
       "user_iduser": "1"
     },
     {
-      "idSkill": "2",
+      "id": "2",
       "name": "CSS",
       "icon": "../../../assets/habilidades/html-5.png",
       "ability_percentage": 90,
       "user_iduser": "1"
     },
     {
-      "idSkill": "1",
+      "id": "1",
       "name": "Angular",
       "icon": "../../../assets/habilidades/html-5.png",
       "ability_percentage": 60,
+      "user_iduser": "1"
+    },
+    {
+      "id": "5e33350a-3fee-4d65-a7e8-68a2ff84c0e1",
+      "name": "Bootstrap 2",
+      "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968672.png",
+      "ability_percentage": "80",
       "user_iduser": "1"
     }
   ],

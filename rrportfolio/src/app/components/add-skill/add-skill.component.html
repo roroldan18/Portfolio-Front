@@ -1,0 +1,40 @@
+<ng-container *ngIf="!this.addMode">
+  <img *ngIf="this.skill?.icon" src={{this.skill?.icon}} alt={{this.skill?.name}} class="imgHabil">
+  <img *ngIf="!this.skill?.icon" src="../../../assets/habilidades/no-photo.png" alt={{this.skill?.name}} class="imgHabil">
+</ng-container>
+
+<form class="formURLBanner" [formGroup]="addSkillForm" (ngSubmit)="this.addMode ? onCreateNewSkill($event) : onEditSkill($event)">    
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+
+    <mat-label >Name Skill</mat-label>
+    <input matInput formControlName="name" placeholder="ex: Redux">
+    <mat-error *ngIf="addSkillForm.get('name')?.hasError('required')">
+      Name skill is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label>Icon path</mat-label>
+    <input matInput formControlName="icon" placeholder="ex: https://upload.wiki/....ark.svg.png">
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label>Ability percentage</mat-label>
+    <input matInput formControlName="ability_percentage" placeholder="ex: 80">
+    <mat-error *ngIf="addSkillForm.get('ability_percentage')?.hasError('required')">
+      A percentage value is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="addSkillForm.get('ability_percentage')?.hasError('min')">
+      A percentage value is <strong>required</strong>
+    </mat-error>
+    <mat-error *ngIf="addSkillForm.get('ability_percentage')?.hasError('max')">
+      Max percentage value is <strong>100</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <div class=" m-3" >
+    <button mat-button color="primary" type="submit">Save</button>
+    <button *ngIf="!this.addMode" mat-button color="primary" (click)="onClickDelete($event)">Delete</button>
+  </div>
+</form>

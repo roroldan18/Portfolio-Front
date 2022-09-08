@@ -1,6 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { unObject } from 'src/app/helpers/unObject';
+import {  unObjectExp } from 'src/app/helpers/unObject';
 import { ExperiencesInfoService } from 'src/app/services/experiences-info.service';
 import { IExperience } from 'src/interfaces/interfaces';
 import Swal from 'sweetalert2';
@@ -31,7 +30,7 @@ export class ExperienceSectionComponent implements OnInit {
 
   onEditExperience(experience:IExperience){
     this.experienceService.putExperience(experience);
-    this.experiences = unObject(this.experiences, experience);
+    this.experiences = unObjectExp(this.experiences, experience);
   }
 
   onAddExperienceButton() {

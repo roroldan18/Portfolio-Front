@@ -52,7 +52,7 @@
   </div>
 
   <div>
-    <mat-form-field class="example-full-width" appearance="fill" *ngIf="!this.currentWork">
+    <mat-form-field class="example-full-width" appearance="fill" *ngIf="!this.formAddExperience.get('isActual')?.value">
       <mat-label>End Date</mat-label>
       <input formControlName="end_date" matInput [matDatepicker]="picker">
       <mat-hint>MM/DD/YYYY</mat-hint>
@@ -64,7 +64,7 @@
   </div>
 
   <span>
-    <mat-checkbox formControlName="isCurrent" (change)="onChangeCurrent()" class="example-margin m-3">Currently work here</mat-checkbox>
+    <mat-checkbox formControlName="isActual" (change)="onChangeCurrent()" class="example-margin m-3">Currently work here</mat-checkbox>
   </span>
 
   <div class=" m-3" >

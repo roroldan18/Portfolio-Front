@@ -3,25 +3,14 @@
     <h2>Educación</h2>
   </div>
   <div class="rightSide">
-    <button class="btn" (click)="clickAdd()"><img src="./assets/add.png" alt="Agregar"></button>
+    <button class="btn" (click)="onShowAdd()"><img src="./assets/add.png" alt="Agregar"></button>
   </div>
 </div>
 
+<ng-container *ngIf="this.showAdd">
+  <app-add-education [addMode]="true" (addEduc)="addEducation($event)" ></app-add-education>
+</ng-container>
+
 <ng-container *ngFor="let singleEd of education">
-  <div class="sectionInfo">
-    <div class="leftSide">
-      <div>
-        <img src={{singleEd.image}} class="logoSmall" alt={{singleEd.educational_establishment}}>
-        <div>
-          <h3>{{singleEd.educational_establishment}}</h3>
-          <p>{{singleEd.career_title}}</p>
-          <p>{{singleEd.start_date.split('-')[1]}}/{{singleEd.start_date.split('-')[0]}}-{{singleEd.end_date.split('-')[1]}}/{{singleEd.end_date.split('-')[0]}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="rightSide">
-      <button class="btn" (click)="clickEdit(singleEd.idEducation)"><img src="./assets/edit.png" alt="Lapiz de edición" ></button>
-      <button class="btn" (click)="clickDelete(singleEd.idEducation)"><img src="./assets/delete.png" alt="borrar"></button>
-    </div>
-  </div>    
+  <app-single-education [singleEd]="singleEd" (onDel)="onDeleteEducation($event)" (onEdit)="onEditEducation($event)"></app-single-education>
 </ng-container>

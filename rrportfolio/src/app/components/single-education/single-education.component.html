@@ -1,0 +1,20 @@
+<div class="sectionInfo">
+  <div class="leftSide">
+    <div>
+      <img src={{singleEd.image}} class="logoSmall" alt={{singleEd.educational_establishment}}>
+      <div>
+        <h3>{{singleEd.educational_establishment}}</h3>
+        <p>{{singleEd.career_title}}</p>
+        <p>{{singleEd.start_date.split('-')[1]}}/{{singleEd.start_date.split('-')[0]}}-{{singleEd.end_date.split('-')[1]}}/{{singleEd.end_date.split('-')[0]}}</p>
+      </div>
+    </div>
+  </div>
+  <div class="rightSide">
+    <button class="btn" (click)="clickEdit(singleEd.id)"><img src="./assets/edit.png" alt="Lapiz de edición" ></button>
+    <button class="btn" (click)="clickDelete(singleEd.id)"><img src="./assets/delete.png" alt="borrar"></button>
+  </div>
+</div>
+
+<ng-container *ngIf="openEdition">
+  <app-add-education [education]="singleEd" (edEduc)="editEduc($event)"></app-add-education>
+</ng-container>

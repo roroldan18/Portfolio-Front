@@ -3,18 +3,27 @@
     <h2>Habilidades</h2>
   </div>
   <div class="rightSide">
-    <button class="btn"><img src="./assets/add.png" alt="Agregar"></button>
-    <button class="btn"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
+    <button class="btn" (click)="this.onClickShowAdd()"><img src="./assets/add.png" alt="Agregar"></button>
+    <button class="btn" (click)="this.onClickShowEdit()"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
   </div>
 </div>
+
+<ng-container *ngIf="this.showAdd">
+  <app-add-skill [addMode]="true" (onAdd)="addSkill($event)"></app-add-skill>
+</ng-container>
+<ng-container *ngIf="this.showEdit">
+  <ng-container *ngFor="let skill of skills">
+    <app-add-skill [addMode]="false" [skill]="skill" (onEdit)="editSkill($event)" (onDelete)="deleteSkill($event)"></app-add-skill>
+  </ng-container>
+</ng-container>
 
 <div class="sectionInfo flex-wrap">
 
   <ng-container  *ngFor="let skill of skills">
     <div class="col-xl-3 col-lg-6 mb-4 position-relative divProgress">
-  
       <div class="text-center">
-        <img src={{this.skill.icon}} alt={{this.skill.name}} class="imgHabil">
+        <img *ngIf="this.skill.icon" src={{this.skill.icon}} alt={{this.skill.name}} class="imgHabil">
+        <img *ngIf="!this.skill.icon" src="../../../assets/habilidades/no-photo.png" alt={{this.skill.name}} class="imgHabil">
         <p>{{this.skill.name}}</p>
       </div>
       <circle-progress

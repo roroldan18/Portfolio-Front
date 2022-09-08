@@ -32,6 +32,10 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatRadioModule} from '@angular/material/radio';
 import { AddExperienceComponent } from './components/add-experience/add-experience.component';
 import { SingleExperienceComponent } from './components/single-experience/single-experience.component';
+import { AddEducationComponent } from './components/add-education/add-education.component';
+import { SingleEducationComponent } from './components/single-education/single-education.component';
+import { AddSkillComponent } from './components/add-skill/add-skill.component';
+import { AddPortfolioComponent } from './components/add-portfolio/add-portfolio.component';
 
 
 
@@ -52,7 +56,11 @@ import { SingleExperienceComponent } from './components/single-experience/single
     ErrorComponent,
     InfoContactComponent,
     AddExperienceComponent,
-    SingleExperienceComponent
+    SingleExperienceComponent,
+    AddEducationComponent,
+    SingleEducationComponent,
+    AddSkillComponent,
+    AddPortfolioComponent
   ],
   imports: [
     BrowserModule,

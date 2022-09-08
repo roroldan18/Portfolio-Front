@@ -34,17 +34,17 @@ export interface IExperience {
   time_work: typeWork,
   start_date: string,
   end_date?: string,
-  isCurrent: boolean,
+  isActual: boolean,
   idUser: string,
   logo?:string
 }
 
 
 export interface IEducation {
-  idEducation: string,
+  id: string,
   career_title:string,
   educational_establishment: string,
-  image: string,
+  image?: string,
   start_date: string,
   end_date: string, 
   user_iduser: string,
@@ -52,7 +52,7 @@ export interface IEducation {
 }
 
 export interface ISkill {
-  idSkill: string,
+  id: string,
   name: string,
   icon?: string,
   ability_percentage: number,
@@ -61,7 +61,7 @@ export interface ISkill {
 
 
 export interface IPortfolio {
-  idPortfolio: string,
+  id: string,
   name: string,
   description: string,
   image: string,

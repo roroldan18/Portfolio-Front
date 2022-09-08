@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { unObjectEdu } from 'src/app/helpers/unObject';
 import { EducationService } from 'src/app/services/education.service';
+import Swal from 'sweetalert2';
 import { IEducation } from '../../../interfaces/interfaces';
 
 @Component({
@@ -9,6 +11,7 @@ import { IEducation } from '../../../interfaces/interfaces';
 })
 export class EducationSectionComponent implements OnInit {
   education:IEducation[] = [];
+  showAdd:boolean = false;
 
   constructor(
     private educationService:EducationService
@@ -20,16 +23,42 @@ export class EducationSectionComponent implements OnInit {
     })
   }
 
-  clickAdd(){
-    console.log('ADD EDUCATION');
+  onShowAdd(){
+    this.showAdd = !this.showAdd;
   }
 
-  clickEdit(id:string){
-    console.log('Edit id: ' + id);
+  addEducation(education:IEducation){
+    this.educationService.postEducation(education);
+    this.onShowAdd();
+    this.education.unshift(education);
   }
 
-  clickDelete(id:string){
-    console.log('Delete id: ' + id);
+  onEditEducation(education:IEducation){
+    this.educationService.putEducation(education);
+    this.education = unObjectEdu(this.education, education);
+  }
+
+  onDeleteEducation(id:string){
+    Swal.fire({
+      title: 'Seguro que deseas eliminar la educación?',
+      text: "No podrás revertirlo!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, borrar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado!',
+          'La educación fue eliminada.',
+          'success'
+        )
+        this.educationService.deleteEducation(id);
+        this.education = this.education.filter(exp => exp.id !== id);
+      }
+    })
+
   }
 
 }

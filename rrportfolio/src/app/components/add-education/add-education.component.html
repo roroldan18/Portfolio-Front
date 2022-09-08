@@ -1,0 +1,55 @@
+<form class="formURLBanner" [formGroup]="formAddEducation" (ngSubmit)="this.addMode ? onCreateNewEducation($event) : onEditEducation($event)">    
+  
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label>Titulo</mat-label>
+    <input matInput formControlName="career_title" placeholder="ex: Contador Público">
+    <mat-error *ngIf="formAddEducation.get('career_title')?.hasError('required')">
+      El título es <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label>Establecimiento</mat-label>
+    <input matInput formControlName="educational_establishment" placeholder="ex: Universidad Argentina de la Empresa">
+    <mat-error *ngIf="formAddEducation.get('educational_establishment')?.hasError('required')">
+      El establecimiento es <strong>requerido</strong>
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label>Imagen</mat-label>
+    <input matInput formControlName="image" placeholder="ex: data:image/jpeg;base64,/9j/4AA...">
+  </mat-form-field>
+
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input  formControlName="start_date" matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill" *ngIf="!this.formAddEducation.get('isActual')?.value">
+      <mat-label>End Date</mat-label>
+      <input formControlName="end_date" matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <span>
+    <mat-checkbox formControlName="isActual" (change)="onChangeCurrent()" class="example-margin m-3">Actualmente estudiando aquí</mat-checkbox>
+  </span>
+
+  <div class=" m-3" >
+    <button mat-button color="primary" type="submit">Save</button>
+  </div>
+</form>

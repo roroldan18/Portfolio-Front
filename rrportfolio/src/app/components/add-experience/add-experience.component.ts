@@ -19,7 +19,6 @@ export class AddExperienceComponent implements OnInit {
 
   experiences: IExperience[] = [];
   formAddExperience: FormGroup;
-  currentWork: boolean = false;
   
   constructor(
     private formBuilder: FormBuilder,
@@ -40,20 +39,20 @@ export class AddExperienceComponent implements OnInit {
         logo: [''], //OPCIONAL
         time_work: ['', [Validators.required]], //Validar de acuerdo al tipo
         start_date: ['', [Validators.required]], //Tipo fecha
-        end_date: [''],//Tipo fecha / OPCIONAL Pero obligatorio si no se tilda actual
-        isCurrent: ['', [Validators.required]],
+        end_date: ['', [Validators.required]],//Tipo fecha / OPCIONAL Pero obligatorio si no se tilda actual
+        isActual: [false, [Validators.required]],
       })
     }  else {
       this.formAddExperience = this.formBuilder.group({
-        id: [this.experience?.id],
-        company: [''],
-        title: [''],
-        description: [''],
-        logo: [''], 
-        time_work: [''], 
-        start_date: [''],
-        end_date: [],
-        isCurrent: [''],
+        id: [this.experience?.id, [Validators.required]],
+        company: [this.experience?.company, [Validators.required]],
+        title: [this.experience?.title, [Validators.required]],
+        description: [this.experience?.description, [Validators.required]],
+        logo: [this.experience?.logo], 
+        time_work: [this.experience?.time_work, [Validators.required]], 
+        start_date: [this.experience?.start_date, [Validators.required]],
+        end_date: [this.experience?.end_date],
+        isActual: [this.experience?.isActual, [Validators.required]],
       })
     }
   }
@@ -75,23 +74,32 @@ export class AddExperienceComponent implements OnInit {
 
   onEditSingleExp(event:Event) {
     event.preventDefault();
-    let experienceEdited = Object.values(this.experiences).find(exp => exp.id === this.formAddExperience.value.id);
-    const formEd = objFormNotEmpty(this.formAddExperience.value);
-    if(experienceEdited){
-      experienceEdited = {
-        ...experienceEdited,
-        ...formEd
-      };
-      this.edExp.emit(experienceEdited);
+    if(this.formAddExperience.valid){
+      let experienceEdited = Object.values(this.experiences).find(exp => exp.id === this.formAddExperience.value.id);
+      const formEd = objFormNotEmpty(this.formAddExperience.value);
+      if(experienceEdited){
+        experienceEdited = {
+          ...experienceEdited,
+          ...formEd
+        };
+        this.edExp.emit(experienceEdited);
+      }
+    } else{
+      Swal.fire(
+        'Form Invalid!',
+        'Some value is missing',
+        'error'
+      )
     }
   }
 
   onChangeCurrent(){
-    this.currentWork = !this.currentWork;
-    if(!this.currentWork){
+    if(!this.formAddExperience.get('isActual')?.value){
       this.formAddExperience.controls['end_date'].setValidators([Validators.required])
+      this.formAddExperience.get('end_date')?.updateValueAndValidity();
     } else {
-      this.formAddExperience.controls['end_date'].removeValidators([Validators.required])
+      this.formAddExperience.get('end_date')?.clearValidators();
+      this.formAddExperience.get('end_date')?.updateValueAndValidity();
     }
   }
 
