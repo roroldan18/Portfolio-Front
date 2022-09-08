@@ -36,6 +36,7 @@ import { AddEducationComponent } from './components/add-education/add-education.
 import { SingleEducationComponent } from './components/single-education/single-education.component';
 import { AddSkillComponent } from './components/add-skill/add-skill.component';
 import { AddPortfolioComponent } from './components/add-portfolio/add-portfolio.component';
+import { SinglePortfolioComponent } from './components/single-portfolio/single-portfolio.component';
 
 
 
@@ -60,7 +61,8 @@ import { AddPortfolioComponent } from './components/add-portfolio/add-portfolio.
     AddEducationComponent,
     SingleEducationComponent,
     AddSkillComponent,
-    AddPortfolioComponent
+    AddPortfolioComponent,
+    SinglePortfolioComponent
   ],
   imports: [
     BrowserModule,

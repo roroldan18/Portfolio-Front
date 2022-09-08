@@ -1,0 +1,17 @@
+<div class="leftSide  mt-5">
+  <div>
+    <a href={{this.portfolio.url}}><img src={{this.portfolio.image}} class="logoSmall" alt={{this.portfolio.name}}></a>
+    <div>
+      <h5>{{this.portfolio.name}}</h5>
+      <p>{{this.portfolio.description}}</p>
+      <b>{{this.portfolio.start_date.split('-')[1]}}/{{this.portfolio.start_date.split('-')[0]}} - {{this.portfolio.end_date.split('-')[1]}}/{{this.portfolio.end_date.split('-')[0]}}</b>
+    </div>
+  </div>
+</div>
+<ng-container *ngIf="this.showEditPort">
+  <app-add-portfolio [addMode]="false" [port]="this.portfolio" (edPort)="onEditPort($event)"></app-add-portfolio>
+</ng-container>
+<div class="rightSide mt-5">
+  <button class="btn"><img src="./assets/edit.png" (click)="onShowEdit()" alt="Lapiz de edición"></button>
+  <button class="btn"><img src="./assets/delete.png" alt="borrar" (click)="onDeletePort(this.portfolio.id)"></button>
+</div>

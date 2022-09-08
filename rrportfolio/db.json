@@ -116,8 +116,8 @@
   ],
   "portfolio": [
     {
-      "idPorfolio": "1",
-      "name": "Proyecto 1",
+      "id": "1",
+      "name": "Prorortecto 1",
       "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
       "image": "../../../assets/habilidades/html-5.png",
       "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
@@ -126,7 +126,7 @@
       "end_date": "2019-04-15"
     },
     {
-      "idPorfolio": "2",
+      "id": "2",
       "name": "Proyecto 2",
       "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
       "image": "../../../assets/habilidades/html-5.png",
@@ -136,17 +136,7 @@
       "end_date": "2019-04-15"
     },
     {
-      "idPorfolio": "3",
-      "name": "Proyecto 3",
-      "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
-      "image": "../../../assets/habilidades/html-5.png",
-      "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
-      "user_iduser": "1",
-      "start_date": "2014-07-01",
-      "end_date": "2019-04-15"
-    },
-    {
-      "idPorfolio": "4",
+      "id": "4",
       "name": "Proyecto 4",
       "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
       "image": "../../../assets/habilidades/html-5.png",
@@ -154,6 +144,13 @@
       "user_iduser": "1",
       "start_date": "2014-07-01",
       "end_date": "2019-04-15"
+    }
+  ],
+  "user": [
+    {
+      "id": "1",
+      "username": "prueba",
+      "password": "prueba"
     }
   ]
 }
