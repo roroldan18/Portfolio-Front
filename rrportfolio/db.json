@@ -22,7 +22,7 @@
   "profile": [
     {
       "idProfile": "1",
-      "idUser":"1",
+      "idUser": "1",
       "banner_image": "../../../assets/example.jpg",
       "profile_image": "../../../assets/perfil.jpg",
       "name": "Rodrigo",
@@ -32,17 +32,17 @@
       "country": "Argentina",
       "telephone": "+34 697 739 523",
       "email": "rodrigo_roldan18@hotmail.com",
-      "about_me":"Matemático, fisico e informático argentino considerado por muchos como el padre de la computación en Argentina.",
+      "about_me": "Matemático, fisico e informático argentino considerado por muchos como el padre de la computación en Argentina.",
       "logo": "../../../assets/logoUniversidad.png"
     }
   ],
   "experience": [
     {
-      "idExperience": "1",
-      "company": "iúnigo Argentina compañía de seguros",
-      "title": "Tax analyst",
+      "id": "1",
+      "company": "CCCCCCCCC",
+      "title": "sdsdsd",
       "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
-      "time_work" : "Full Time",
+      "time_work": "Part Time",
       "start_date": "2018-01-01",
       "end_date": "2019-01-01",
       "logo": "../../../assets/logoUniversidad.png",
@@ -50,11 +50,11 @@
       "isActual": "false"
     },
     {
-      "idExperience": "2",
+      "id": "2",
       "company": "RSM",
-      "title": "Tax Sr",
+      "title": "Tax SSr",
       "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
-      "time_work" : "Full Time",
+      "time_work": "Full Time",
       "start_date": "2014-07-01",
       "end_date": "2019-04-15",
       "logo": "../../../assets/logoUniversidad.png",
@@ -111,7 +111,7 @@
     {
       "idPorfolio": "1",
       "name": "Proyecto 1",
-      "description":"bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
+      "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
       "image": "../../../assets/habilidades/html-5.png",
       "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
       "user_iduser": "1",
@@ -121,7 +121,7 @@
     {
       "idPorfolio": "2",
       "name": "Proyecto 2",
-      "description":"bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
+      "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
       "image": "../../../assets/habilidades/html-5.png",
       "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
       "user_iduser": "1",
@@ -131,7 +131,7 @@
     {
       "idPorfolio": "3",
       "name": "Proyecto 3",
-      "description":"bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
+      "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
       "image": "../../../assets/habilidades/html-5.png",
       "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
       "user_iduser": "1",
@@ -141,7 +141,7 @@
     {
       "idPorfolio": "4",
       "name": "Proyecto 4",
-      "description":"bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
+      "description": "bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla bla bla bla muchas tareas bla bla bla",
       "image": "../../../assets/habilidades/html-5.png",
       "url": "https://www.linkedin.com/in/rodrigo-roldan18/",
       "user_iduser": "1",

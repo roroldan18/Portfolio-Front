@@ -3,26 +3,16 @@
     <h2>Experiencia</h2>
   </div>
   <div class="rightSide">
-    <button class="btn"><img src="./assets/add.png" alt="Agregar"></button>
+    <button class="btn" (click)="onAddExperienceButton()"><img src="./assets/add.png" alt="Agregar"></button>
   </div>
 </div>
 
+<div *ngIf="this.addExperience" class="m-3">
+  <app-add-experience [addMode]="true" (addExp)="onAddExperience($event)"></app-add-experience>
+</div>
+
 <ng-container *ngFor="let experience of experiences">
-  <div class="sectionInfo">
-    <div class="leftSide">
-      <div>
-        <img src={{experience.logo}} alt={{experience.company}} class="logoSmall">
-        <div>
-          <h3>{{experience.title}}</h3>
-          <p>{{experience.company}} - {{experience.time_work}}</p>
-          <p><b>{{experience.start_date}} - {{experience.end_date}}</b> - {{getTimeWorked(experience.start_date, experience.end_date)}}</p>
-          <p>{{experience.description}}</p>
-        </div>
-      </div>
-    </div>
-    <div class="rightSide">
-      <button class="btn"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
-      <button class="btn"><img src="./assets/delete.png" alt="borrar"></button>
-    </div>
-  </div>  
+  <app-single-experience [experience]="experience" (onEdit)="onEditExperience($event)" (onDel)="onDeleteExperience($event)"></app-single-experience>
 </ng-container>
+
+

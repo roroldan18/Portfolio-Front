@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { unObject } from 'src/app/helpers/unObject';
 import { ExperiencesInfoService } from 'src/app/services/experiences-info.service';
 import { IExperience } from 'src/interfaces/interfaces';
-import { calculateTimimg } from 'src/utils/calculateTiming';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-experience-section',
@@ -9,39 +11,60 @@ import { calculateTimimg } from 'src/utils/calculateTiming';
   styleUrls: ['./experience-section.component.css']
 })
 export class ExperienceSectionComponent implements OnInit {
+  addExperience: boolean = false;
   experiences: IExperience[] = [];
-
+  
   constructor(
-    private experienceService: ExperiencesInfoService
-  ) { }
-
+    private experienceService: ExperiencesInfoService,
+  ) {
+  }
+  
   ngOnInit(): void {
+    this.onGetExperience();
+  }
+
+  onGetExperience(){
     this.experienceService.getExperiences().subscribe((experiences:IExperience[]) => {
       this.experiences = experiences;
     })
   }
 
-  getTimeWorked(startDate:string, endDate?:string):string{
-    const [yearS, monthS, dayS] = startDate.split('-');
-    const [yearE, monthE, dayE] = endDate ? endDate.split('-') : new Date().toISOString().split('-');
-
-    const start:any = new Date(parseInt(yearS), parseInt(monthS), parseInt(dayS));  
-    const end:any = new Date(parseInt(yearE), parseInt(monthE), parseInt(dayE));
-    
-    
-    const diffTime:number = Math.abs(end - start);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-
-    const { years, months} = calculateTimimg(diffDays);
-
-    if(years == 0 && months == 0){
-      return `${diffDays} días`;
-    }else if(years == 0){
-      return `${months} meses`;
-    } else if (months == 0){
-      return `${years} años`;
-    } else {
-      return `${years} años y ${months} meses`;
-    }
+  onEditExperience(experience:IExperience){
+    this.experienceService.putExperience(experience);
+    this.experiences = unObject(this.experiences, experience);
   }
+
+  onAddExperienceButton() {
+    this.addExperience = !this.addExperience;
+  }
+
+  onAddExperience(experience: IExperience){
+    this.experienceService.postExperience(experience);
+    this.onAddExperienceButton();
+    this.experiences.unshift(experience);
+  }
+
+  onDeleteExperience(id:string){
+    Swal.fire({
+      title: 'Seguro que deseas eliminar la experiencia?',
+      text: "No podrás revertirlo!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, borrar!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire(
+          'Borrado!',
+          'La experiencia fue eliminada.',
+          'success'
+        )
+        this.experienceService.deleteExperience(id);
+        this.experiences = this.experiences.filter(exp => exp.id !== id);
+      }
+    })
+  }
+
+
 }

@@ -34,7 +34,7 @@ export interface IExperience {
   time_work: typeWork,
   start_date: string,
   end_date?: string,
-  isActual: boolean,
+  isCurrent: boolean,
   idUser: string,
   logo?:string
 }

@@ -1,0 +1,20 @@
+<div class="sectionInfo">
+  <div class="leftSide">
+    <div>
+      <img src={{experience.logo}} alt={{experience.company}} class="logoSmall">
+      <div>
+        <h3>{{experience.title}}</h3>
+        <p>{{experience.company}} - {{experience.time_work}}</p>
+        <p><b>{{getDate(experience.start_date)}} - {{getDate(experience.end_date)}}</b> - {{getTimeWorked(experience.start_date, experience.end_date)}}</p>
+        <p>{{experience.description}}</p>
+      </div>
+      <form *ngIf="this.editable">  
+        <app-add-experience [experience]="experience" [addMode]="false" (edExp)="onEditEx($event)"></app-add-experience>
+      </form>
+    </div>
+  </div>
+  <div class="rightSide">
+    <button class="btn"><img src="./assets/edit.png" (click)="onEditShow()" alt="Lapiz de edición"></button>
+    <button class="btn"><img src="./assets/delete.png" (click)="onDelete(experience.id)" alt="borrar"></button>
+  </div>
+</div>  

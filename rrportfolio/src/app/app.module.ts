@@ -18,6 +18,22 @@ import { LoginComponent } from './pages/login/login.component';
 import { MainPageComponent } from './pages/main-page/main-page.component';
 import { MainSectionComponent } from './components/main-section/main-section.component';
 import { ErrorComponent } from './pages/error/error.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatDialogModule } from '@angular/material/dialog';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatNativeDateModule } from '@angular/material/core';
+import { MatFormFieldModule, MAT_FORM_FIELD_DEFAULT_OPTIONS } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { InfoContactComponent } from './components/info-contact/info-contact.component';
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatDatepickerModule } from '@angular/material/datepicker';
+import {MatIconModule} from '@angular/material/icon';
+import {MatRadioModule} from '@angular/material/radio';
+import { AddExperienceComponent } from './components/add-experience/add-experience.component';
+import { SingleExperienceComponent } from './components/single-experience/single-experience.component';
+
+
 
 @NgModule({
   declarations: [
@@ -33,13 +49,28 @@ import { ErrorComponent } from './pages/error/error.component';
     FooterComponent,
     LoginComponent,
     MainPageComponent,
-    ErrorComponent
+    ErrorComponent,
+    InfoContactComponent,
+    AddExperienceComponent,
+    SingleExperienceComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     HttpClientModule,
+    MatInputModule,
     NgbModule,
+    MatDialogModule,
+    MatRadioModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCheckboxModule,
+    MatNativeDateModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
     NgCircleProgressModule.forRoot({
       "backgroundPadding": -50,
       "radius": 47,
@@ -51,9 +82,12 @@ import { ErrorComponent } from './pages/error/error.component';
       "titleFontSize": "22",
       "showSubtitle": false,
       "showBackground": false,
-      "startFromZero": false})
+      "startFromZero": false}),
+    BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

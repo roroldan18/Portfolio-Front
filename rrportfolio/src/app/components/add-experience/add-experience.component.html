@@ -1,0 +1,73 @@
+<form class="formURLBanner" [formGroup]="formAddExperience" (ngSubmit)="this.addMode ? onCreateNewExperience($event) : onEditSingleExp($event)">    
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label >Company</mat-label>
+    <input matInput formControlName="company" placeholder="ex: Iunigo Argentina compañía de seguros">
+    <mat-error *ngIf="formAddExperience.get('company')?.hasError('required')">
+      Company is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label>Title</mat-label>
+    <input matInput formControlName="title" placeholder="ex: Tax Senior">
+    <mat-error *ngIf="formAddExperience.get('title')?.hasError('required')">
+      Title is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description" placeholder="ex: Realicé muchisimas tareas y bla bla bla">
+    <mat-error *ngIf="formAddExperience.get('description')?.hasError('required')">
+      Description is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+  
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label>Company Logo</mat-label>
+    <input matInput formControlName="logo" placeholder="ex: http://url.com/imagen.png">
+  </mat-form-field>
+  
+  <div class="m-3">
+    <mat-error *ngIf="formAddExperience.get('time_work')?.hasError('required')">
+      Type of work is <strong>required</strong>
+    </mat-error>
+    <mat-radio-group formControlName="time_work" aria-label="Select an option" >
+      <mat-radio-button class="m-2" value="Part Time">Part Time</mat-radio-button>
+      <mat-radio-button class="m-2" value="Full Time">Full Time</mat-radio-button>
+      <mat-radio-button class="m-2" value="Freelance">Freelance</mat-radio-button>
+    </mat-radio-group>
+  </div>
+  
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill">
+      <mat-label>Start Date</mat-label>
+      <input  formControlName="start_date" matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <div>
+    <mat-form-field class="example-full-width" appearance="fill" *ngIf="!this.currentWork">
+      <mat-label>End Date</mat-label>
+      <input formControlName="end_date" matInput [matDatepicker]="picker">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matSuffix [for]="picker">
+        <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <span>
+    <mat-checkbox formControlName="isCurrent" (change)="onChangeCurrent()" class="example-margin m-3">Currently work here</mat-checkbox>
+  </span>
+
+  <div class=" m-3" >
+    <button mat-button color="primary" type="submit">Save</button>
+  </div>
+</form>
