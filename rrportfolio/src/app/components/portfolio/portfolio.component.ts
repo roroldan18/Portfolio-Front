@@ -45,12 +45,6 @@ export class PortfolioComponent implements OnInit {
   addPortfolio(port:IPortfolio){
     const portToPost = new PortfolioDto(port.name, port.description, port.image, port.url, port.startDate, port.endDate,this.idUser);
     this.portfolioService.postPortfolio(portToPost);
-    Swal.fire({
-      icon: 'success',
-      title: 'Portfolio Saved',
-      showConfirmButton: false,
-      timer: 1500
-    })
     this.onShowAdd();
     this.portfolio.unshift(port);
   }
@@ -66,11 +60,6 @@ export class PortfolioComponent implements OnInit {
       confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado!',
-          'El portafolio fue eliminado.',
-          'success'
-        )
         this.portfolioService.deletePortfolio(parseInt(id));
         this.portfolio = this.portfolio.filter(port => port.id !== parseInt(id));
       }
@@ -80,12 +69,6 @@ export class PortfolioComponent implements OnInit {
   editPortfolio(port: IPortfolio){
     const portToPut = new PortfolioDto(port.name, port.description, port.image, port.url, port.startDate, port.endDate,this.idUser);
     this.portfolioService.putPortfolio(portToPut, port.id);
-    Swal.fire({
-      icon: 'success',
-      title: 'Portfolio Edited',
-      showConfirmButton: false,
-      timer: 1500
-    })
     this.portfolio = unObjectPort(this.portfolio, port);
   }
 

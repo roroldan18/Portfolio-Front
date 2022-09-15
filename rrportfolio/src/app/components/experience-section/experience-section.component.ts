@@ -46,12 +46,6 @@ export class ExperienceSectionComponent implements OnInit {
   onEditExperience(experience:IExperience){
     const expDto:ExperienceDto = new ExperienceDto(experience.company, experience.title, experience.description,experience.timeWork, experience.startDate, experience.endDate, experience.logo, experience.isActual, this.idUser);
     this.experienceService.putExperience(expDto, experience.id);
-    Swal.fire({
-      icon: 'success',
-      title: 'Experience Edited',
-      showConfirmButton: false,
-      timer: 1500
-    })
     this.experiences = unObjectExp(this.experiences, experience);
   }
 
@@ -62,12 +56,6 @@ export class ExperienceSectionComponent implements OnInit {
   onAddExperience(experience: IExperience){
     const expDto:ExperienceDto = new ExperienceDto(experience.company, experience.title, experience.description,experience.timeWork, experience.startDate, experience.endDate, experience.logo, experience.isActual, this.idUser);
     this.experienceService.postExperience(expDto);
-    Swal.fire({
-      icon: 'success',
-      title: 'Experience Added',
-      showConfirmButton: false,
-      timer: 1500
-    })
     this.onAddExperienceButton();
     this.experiences.unshift(experience);
   }
@@ -83,11 +71,6 @@ export class ExperienceSectionComponent implements OnInit {
       confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado!',
-          'La experiencia fue eliminada.',
-          'success'
-        )
         this.experienceService.deleteExperience(parseInt(id));
         this.experiences = this.experiences.filter(exp => exp.id !== parseInt(id));
       }

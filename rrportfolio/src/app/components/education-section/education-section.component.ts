@@ -46,12 +46,6 @@ export class EducationSectionComponent implements OnInit {
   addEducation(education:IEducation){
     const educ = new EducationDto(education.careerTitle, education.educationalEstablishment, education.startDate, education.endDate, education.isActual, this.idUser, education.image);
     this.educationService.postEducation(educ);
-    Swal.fire({
-      icon: 'success',
-      title: 'Education Added',
-      showConfirmButton: false,
-      timer: 1500
-    })
     this.onShowAdd();
     this.education.unshift(education);
   }
@@ -59,12 +53,6 @@ export class EducationSectionComponent implements OnInit {
   onEditEducation(education:IEducation){
     const educ = new EducationDto(education.careerTitle, education.educationalEstablishment, education.startDate, education.endDate, education.isActual, this.idUser, education.image);
     this.educationService.putEducation(educ, education.id);
-    Swal.fire({
-      icon: 'success',
-      title: 'Education Edited',
-      showConfirmButton: false,
-      timer: 1500
-    })
     this.education = unObjectEdu(this.education, education);
   }
 
@@ -79,11 +67,6 @@ export class EducationSectionComponent implements OnInit {
       confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado!',
-          'La educación fue eliminada.',
-          'success'
-        )
         this.educationService.deleteEducation(parseInt(id));
         this.education = this.education.filter(exp => exp.id !== parseInt(id));
       }

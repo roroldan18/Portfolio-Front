@@ -54,24 +54,13 @@ export class SkillsSectionComponent implements OnInit {
   addSkill(skill: ISkill){
     const skillToPost = new SkillDto(skill.name, skill.icon, skill.abilityPercentage, this.idUser);
     this.skillService.postSkill(skillToPost);
-    Swal.fire({
-      icon: 'success',
-      title: 'Skill Saved',
-      showConfirmButton: false,
-      timer: 1500
-    })
     this.onClickShowAdd();
     this.skills.push(skill);
   }
+
   editSkill(skill: ISkill){
     const skillToPut = new SkillDto(skill.name, skill.icon, skill.abilityPercentage, this.idUser);
     this.skillService.putSkill(skillToPut, skill.id);
-    Swal.fire({
-      icon: 'success',
-      title: 'Skill Edited',
-      showConfirmButton: false,
-      timer: 1500
-    })
     this.skills = unObjectSkill(this.skills, skill);
     this.onClickShowEdit();
   }
@@ -88,11 +77,6 @@ export class SkillsSectionComponent implements OnInit {
       confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado!',
-          'La habilidad fue eliminada.',
-          'success'
-        )
         this.skillService.deleteSkill(parseInt(id));
         this.skills = this.skills.filter(skill => skill.id !== parseInt(id));
       }

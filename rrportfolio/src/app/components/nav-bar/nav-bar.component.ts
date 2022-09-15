@@ -59,12 +59,12 @@ export class NavBarComponent implements OnInit {
 
   editSocialNetwork(socialNetwork:ISocialNetworkIcon){
     const socNewToPost = new SocialNetworkDto(socialNetwork.url, socialNetwork.icon, socialNetwork.name, socialNetwork.downloadable, this.idUser);
-    this.socialNetworkService.putExperience(socNewToPost, socialNetwork.id);
+    this.socialNetworkService.putSocNet(socNewToPost, socialNetwork.id);
     this.socialNetworks = unObjectSocNet(this.socialNetworks, socialNetwork);
   }
   createSocialNetwork(socialNetwork:ISocialNetworkIcon){
     const socNewToPost = new SocialNetworkDto(socialNetwork.url, socialNetwork.icon, socialNetwork.name, socialNetwork.downloadable, this.idUser);
-    this.socialNetworkService.postExperience(socNewToPost);
+    this.socialNetworkService.postSocNet(socNewToPost);
     this.socialNetworks.unshift(socialNetwork);
   }
   deleteSocialNetwork(id:string){
@@ -78,12 +78,7 @@ export class NavBarComponent implements OnInit {
       confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire(
-          'Borrado!',
-          'La red social fue eliminada.',
-          'success'
-        )
-        this.socialNetworkService.deleteExperience(id);
+        this.socialNetworkService.deleteSocNet(id);
         this.socialNetworks = this.socialNetworks.filter(sn => sn.id !== parseInt(id));
       }
     })

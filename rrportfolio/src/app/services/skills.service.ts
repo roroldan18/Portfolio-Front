@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ISkill } from 'src/interfaces/interfaces';
 import { SkillDto } from '../../model/skill-dto';
+import Swal from 'sweetalert2';
 
 @Injectable({
   providedIn: 'root'
@@ -29,14 +30,61 @@ export class SkillsService {
   }
 
   postSkill(skill: SkillDto){
-    this.http.post<SkillDto>(`${this.url}/`, skill, this.httpOptions).subscribe();
+    console.log(skill)
+    this.http.post<SkillDto>(`${this.url}/`, skill, this.httpOptions).subscribe( (response) => {
+      Swal.fire(
+        'Added!',
+        `Skill: ${skill.name} - added`,
+        'success'
+      )    
+    },
+      (error: HttpErrorResponse) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops, something went wrong.',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    );
   }
 
   putSkill(skill: SkillDto, id:number){
-    this.http.put<SkillDto>(`${this.url}/${id}`, skill, this.httpOptions).subscribe()
+    return this.http.put<any>(`${this.url}/${id}`, skill, this.httpOptions).subscribe( (response) => {
+      Swal.fire({
+        icon: 'success',
+        title: `Skill ${skill.name} - Edited`,
+        showConfirmButton: false,
+        timer: 1500
+      })
+  },
+  (error: HttpErrorResponse) => {
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops, something went wrong.',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  })
   }
+
   deleteSkill(id:number){
-    this.http.delete<SkillDto>(`${this.url}/${id}`).subscribe()
+    this.http.delete<SkillDto>(`${this.url}/${id}`).subscribe( (response) => {
+      Swal.fire(
+        'Deleted!',
+        'Skill deleted',
+        'success'
+      )    
+    },
+      (error: HttpErrorResponse) => {
+        Swal.fire({
+          icon: 'error',
+          title: 'Oops, something went wrong.',
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
+    )
   }
   
 }

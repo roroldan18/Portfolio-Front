@@ -5,7 +5,6 @@ import { IPersonalInfo } from 'src/interfaces/interfaces';
 import { LoginService } from '../../services/login.service';
 import { ProfileDto } from 'src/model/profile-dto';
 import { UserService } from 'src/app/services/user.service';
-import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-about-section',
@@ -54,15 +53,8 @@ export class AboutSectionComponent implements OnInit {
   onEnviarAbout(event: Event) {
     event.preventDefault();
     if(this.formAbout.valid){
-
       const aboutToPut = new ProfileDto(this.personalInfo.bannerImage, this.personalInfo.profileImage, this.personalInfo.name, this.personalInfo.lastName, this.personalInfo.title, this.personalInfo.province, this.personalInfo.country, this.personalInfo.telephone, this.personalInfo.email, this.formAbout.value.aboutMe,this.personalInfo.logo, this.idUser);
       this.personalInfoService.putPersonalInfo(aboutToPut, this.personalInfo.id);
-      Swal.fire({
-        icon: 'success',
-        title: 'About Me Edited',
-        showConfirmButton: false,
-        timer: 1500
-      })
       this.personalInfo.aboutMe = this.formAbout.value.aboutMe;
       this.onClickEdit();
     } else {
