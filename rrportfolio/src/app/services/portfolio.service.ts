@@ -2,12 +2,13 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPortfolio } from 'src/interfaces/interfaces';
+import { PortfolioDto } from '../../model/portfolio-dto';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PortfolioService {
-  private url = 'http://localhost:5001/portfolio';
+  private url = 'http://localhost:8080/portfolio';
   
   private httpOptions = {
     headers: new HttpHeaders({
@@ -20,17 +21,21 @@ export class PortfolioService {
   ) { }
 
   getPortfolio():Observable<IPortfolio[]> {
-    return this.http.get<IPortfolio[]>(this.url);
+    return this.http.get<IPortfolio[]>(this.url+"/");
   }
 
-  postPortfolio(port: IPortfolio) {
-    this.http.post<IPortfolio>(this.url, port, this.httpOptions).subscribe();
+  getPorfolioByUser(idUser: number): Observable<IPortfolio[]> {
+    return this.http.get<IPortfolio[]>(this.url+`/user/${idUser}`);
   }
 
-  putPortfolio(port: IPortfolio) {
-    this.http.put<IPortfolio>(`${this.url}/${port.id}`, port, this.httpOptions).subscribe();
+  postPortfolio(port: PortfolioDto) {
+    this.http.post<PortfolioDto>(this.url+"/", port, this.httpOptions).subscribe();
   }
-  deletePortfolio(id: string) {
+
+  putPortfolio(port: PortfolioDto, id:number) {
+    this.http.put<PortfolioDto>(`${this.url}/${id}`, port, this.httpOptions).subscribe();
+  }
+  deletePortfolio(id: number) {
     this.http.delete<IPortfolio>(`${this.url}/${id}`).subscribe();
   }
 }

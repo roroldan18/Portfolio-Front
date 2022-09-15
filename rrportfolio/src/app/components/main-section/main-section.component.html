@@ -1,15 +1,15 @@
-<div class="jumbotron jumbotron-fluid imgCover" [style.background]="'url('+ this.personalInfo.banner_image + ')'">
-  <button class="btn btn-light" (click)="editBannerImageButton()"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
+<div class="jumbotron jumbotron-fluid imgCover" [style.background]="'url('+ this.personalInfo.bannerImage + ')'">
+  <button *ngIf="this.loggedIn" class="btn btn-light" (click)="editBannerImageButton()"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
 </div>
 
-<div *ngIf="this.editBanner" class="formURLBanner">
-  <form class="formURLBanner" [formGroup]="formUrl" (ngSubmit)="onEnviarUrl($event)">
+<div *ngIf="this.editBanner && this.loggedIn" class="formURLBanner">
+  <form class="formURLBanner" [formGroup]="formInfo" (ngSubmit)="onEnviarBanner($event)">
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Banner URL</mat-label>
-      <input matInput placeholder="ex: http://url.com/img.png" formControlName="banner_image">
+      <input matInput placeholder="ex: http://url.com/img.png" formControlName="bannerImage">
     </mat-form-field>
     <div class=" m-3">
-      <p>Actual URL: {{this.personalInfo.banner_image}}</p>
+      <p>Actual URL: {{this.personalInfo.bannerImage}}</p>
       <button mat-button color="primary" type="submit">Save</button>
     </div>
   </form>
@@ -19,16 +19,13 @@
   <div class="leftSide">
     <div class="m-2">
       <div class="divImg">
-        <img src={{this.personalInfo.profile_image}} alt="imagen de perfil" class="imgPerfil">
+        <img src={{this.personalInfo.profileImage}} alt="imagen de perfil" class="imgPerfil">
       </div>
-      <button class="btn btnEditPerfil" (click)="editPersonalInfoButton()"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
+      <button *ngIf="this.loggedIn" class="btn btnEditPerfil" (click)="editPersonalInfoButton()"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
     </div>
-    <h2>{{this.personalInfo.name}} {{this.personalInfo.last_name}}</h2>
+    <h2>{{this.personalInfo.name}} {{this.personalInfo.lastName}}</h2>
     <p>{{this.personalInfo.title}}</p>
     <p>{{this.personalInfo.province}}, {{this.personalInfo.country}}. <button mat-raised-button (click)="openDialog()" class="m-2">Información de contacto</button></p>
-    <div>
-      <button class="btn btn-primary">Añadir Sección</button>
-    </div>
     
     <div *ngIf="this.editPersonalInfo" class="flex flex-column">
       <h4 class="m-3">Editar información personal</h4>
@@ -41,17 +38,27 @@
   
         <mat-form-field class="example-full-width m-2" appearance="fill">
           <mat-label>LastName</mat-label>
-          <input matInput placeholder="ex: Roldan" formControlName="last_name">
+          <input matInput placeholder="ex: Roldan" formControlName="lastName">
         </mat-form-field>
   
         <mat-form-field class="example-full-width m-2" appearance="fill">
           <mat-label>Title</mat-label>
           <input matInput placeholder="ex: Desarrollador Web" formControlName="title">
         </mat-form-field>
+
+        <mat-form-field class="example-full-width m-2" appearance="fill">
+          <mat-label>Telephone</mat-label>
+          <input matInput placeholder="ex: +34 1139932929" formControlName="telephone">
+        </mat-form-field>
+
+        <mat-form-field class="example-full-width m-2" appearance="fill">
+          <mat-label>Logo Image</mat-label>
+          <input matInput placeholder="ex: http://url.com/img.png" formControlName="logo">
+        </mat-form-field>
   
         <mat-form-field class="example-full-width m-2" appearance="fill">
           <mat-label>Profile Image</mat-label>
-          <input matInput placeholder="ex: http://url.com/img.png" formControlName="profile_image">
+          <input matInput placeholder="ex: http://url.com/img.png" formControlName="profileImage">
         </mat-form-field>
   
         <mat-form-field class="example-full-width m-2" appearance="fill">

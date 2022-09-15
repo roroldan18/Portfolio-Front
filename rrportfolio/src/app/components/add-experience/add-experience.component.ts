@@ -36,10 +36,10 @@ export class AddExperienceComponent implements OnInit {
         company: ['', [Validators.required]],
         title: ['', [Validators.required]],
         description: ['', [Validators.required]],
-        logo: [''], //OPCIONAL
-        time_work: ['', [Validators.required]], //Validar de acuerdo al tipo
-        start_date: ['', [Validators.required]], //Tipo fecha
-        end_date: ['', [Validators.required]],//Tipo fecha / OPCIONAL Pero obligatorio si no se tilda actual
+        logo: ['', [Validators.required]],
+        timeWork: ['', [Validators.required]], //Validar de acuerdo al tipo
+        startDate: ['', [Validators.required]], //Tipo fecha
+        endDate: ['', [Validators.required]],//Tipo fecha / OPCIONAL Pero obligatorio si no se tilda actual
         isActual: [false, [Validators.required]],
       })
     }  else {
@@ -48,10 +48,10 @@ export class AddExperienceComponent implements OnInit {
         company: [this.experience?.company, [Validators.required]],
         title: [this.experience?.title, [Validators.required]],
         description: [this.experience?.description, [Validators.required]],
-        logo: [this.experience?.logo], 
-        time_work: [this.experience?.time_work, [Validators.required]], 
-        start_date: [this.experience?.start_date, [Validators.required]],
-        end_date: [this.experience?.end_date],
+        logo: [this.experience?.logo, [Validators.required]], 
+        timeWork: [this.experience?.timeWork, [Validators.required]], 
+        startDate: [this.experience?.startDate, [Validators.required]],
+        endDate: [this.experience?.endDate],
         isActual: [this.experience?.isActual, [Validators.required]],
       })
     }
@@ -60,9 +60,7 @@ export class AddExperienceComponent implements OnInit {
   onCreateNewExperience(event:Event) {
     event.preventDefault();
     if(this.formAddExperience.valid){
-      console.log('VALID')
       this.addExp.emit(this.formAddExperience.value);
-
     } else {
       Swal.fire(
         'Form Invalid!',
@@ -95,11 +93,11 @@ export class AddExperienceComponent implements OnInit {
 
   onChangeCurrent(){
     if(!this.formAddExperience.get('isActual')?.value){
-      this.formAddExperience.controls['end_date'].setValidators([Validators.required])
-      this.formAddExperience.get('end_date')?.updateValueAndValidity();
+      this.formAddExperience.controls['endDate'].setValidators([Validators.required])
+      this.formAddExperience.get('endDate')?.updateValueAndValidity();
     } else {
-      this.formAddExperience.get('end_date')?.clearValidators();
-      this.formAddExperience.get('end_date')?.updateValueAndValidity();
+      this.formAddExperience.get('endDate')?.clearValidators();
+      this.formAddExperience.get('endDate')?.updateValueAndValidity();
     }
   }
 

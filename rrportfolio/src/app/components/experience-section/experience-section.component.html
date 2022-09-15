@@ -3,16 +3,16 @@
     <h2>Experiencia</h2>
   </div>
   <div class="rightSide">
-    <button class="btn" (click)="onAddExperienceButton()"><img src="./assets/add.png" alt="Agregar"></button>
+    <button *ngIf="this.loggedIn" class="btn" (click)="onAddExperienceButton()"><img src="./assets/add.png" alt="Agregar"></button>
   </div>
 </div>
 
-<div *ngIf="this.addExperience" class="m-3">
+<div *ngIf="this.addExperience && this.loggedIn" class="m-3">
   <app-add-experience [addMode]="true" (addExp)="onAddExperience($event)"></app-add-experience>
 </div>
 
 <ng-container *ngFor="let experience of experiences">
-  <app-single-experience [experience]="experience" (onEdit)="onEditExperience($event)" (onDel)="onDeleteExperience($event)"></app-single-experience>
+  <app-single-experience [isLoggedIn]="this.loggedIn" [experience]="experience" (onEdit)="onEditExperience($event)" (onDel)="onDeleteExperience($event)"></app-single-experience>
 </ng-container>
 
 

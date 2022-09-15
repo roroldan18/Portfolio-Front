@@ -1,0 +1,43 @@
+<ng-container *ngIf="!this.addMode">
+  <img *ngIf="this.socialNetwork?.icon" src={{this.socialNetwork?.icon}} alt={{this.socialNetwork?.name}} class="imgHabil">
+  <img *ngIf="!this.socialNetwork?.icon" src="../../../assets/habilidades/no-photo.png" alt={{this.socialNetwork?.name}} class="imgHabil">
+</ng-container>
+
+<form class="formURLBanner" [formGroup]="addSocialNetworkForm" (ngSubmit)="this.addMode ? onCreateNewSN($event) : onEditSN($event)">    
+
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label >URL Social Network</mat-label>
+    <input matInput formControlName="url" placeholder="ex: linkedin.com/your-profile">
+    <mat-error *ngIf="addSocialNetworkForm.get('url')?.hasError('required')">
+      URL is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+ 
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label >Icon Social Network (Fontawesome class)</mat-label>
+    <input matInput formControlName="icon" placeholder="ex: fa linkedin">
+    <mat-error *ngIf="addSocialNetworkForm.get('icon')?.hasError('required')">
+      Icon is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="example-full-width w-100" appearance="fill">
+    <mat-label >Name Social Network</mat-label>
+    <input matInput formControlName="name" placeholder="ex: linkedin">
+    <mat-error *ngIf="addSocialNetworkForm.get('name')?.hasError('required')">
+      Name is <strong>required</strong>
+    </mat-error>
+  </mat-form-field>
+
+  <span>
+    <mat-checkbox formControlName="downloadable" class="example-margin m-3">Is downloadable? (true for CV)</mat-checkbox>
+  </span>
+
+  
+  
+
+  <div class=" m-3" >
+    <button mat-button color="primary" type="submit">Save</button>
+    <button *ngIf="!this.addMode" mat-button color="primary" (click)="onClickDelete($event)">Delete</button>
+  </div>
+</form>

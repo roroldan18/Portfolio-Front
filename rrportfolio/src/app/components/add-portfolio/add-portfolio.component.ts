@@ -36,9 +36,9 @@ export class AddPortfolioComponent implements OnInit {
         description: ['', [Validators.required]],
         image: ['', [Validators.required]],
         url: ['', [Validators.required]],
-        user_iduser: ['1', [Validators.required]],
-        start_date:['', [Validators.required]],
-        end_date:['', [Validators.required]],
+        idUser: ['1', [Validators.required]],
+        startDate:['', [Validators.required]],
+        endDate:['', [Validators.required]],
       })
     } else {
       this.formAddPortfolio = this.formBuilder.group({
@@ -47,9 +47,9 @@ export class AddPortfolioComponent implements OnInit {
         description: [this.port?.description, [Validators.required]],
         image: [this.port?.image, [Validators.required]],
         url: [this.port?.url, [Validators.required]],
-        user_iduser: ['1', [Validators.required]],
-        start_date:[this.port?.start_date, [Validators.required]],
-        end_date:[this.port?.end_date, [Validators.required]],
+        idUser: ['1', [Validators.required]],
+        startDate:[this.port?.startDate, [Validators.required]],
+        endDate:[this.port?.endDate, [Validators.required]],
       })
     }
   }

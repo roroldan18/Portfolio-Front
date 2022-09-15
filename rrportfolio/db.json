@@ -22,7 +22,6 @@
   "profile": [
     {
       "idProfile": "1",
-      "idUser": "1",
       "banner_image": "../../../assets/example.jpg",
       "profile_image": "../../../assets/perfil.jpg",
       "name": "Rodrigo",
@@ -33,7 +32,8 @@
       "telephone": "+34 697 739 523",
       "email": "rodrigo_roldan18@hotmail.com",
       "about_me": "Matemático, fisico e informático argentino considerado por muchos como el padre de la computación en Argentina.",
-      "logo": "../../../assets/logoUniversidad.png"
+      "logo": "../../../assets/logoUniversidad.png",
+      "idUser": "1"
     }
   ],
   "experience": [

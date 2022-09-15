@@ -3,14 +3,14 @@
     <h2>Educación</h2>
   </div>
   <div class="rightSide">
-    <button class="btn" (click)="onShowAdd()"><img src="./assets/add.png" alt="Agregar"></button>
+    <button *ngIf="this.loggedIn" class="btn" (click)="onShowAdd()"><img src="./assets/add.png" alt="Agregar"></button>
   </div>
 </div>
 
-<ng-container *ngIf="this.showAdd">
+<ng-container *ngIf="this.showAdd && this.loggedIn">
   <app-add-education [addMode]="true" (addEduc)="addEducation($event)" ></app-add-education>
 </ng-container>
 
 <ng-container *ngFor="let singleEd of education">
-  <app-single-education [singleEd]="singleEd" (onDel)="onDeleteEducation($event)" (onEdit)="onEditEducation($event)"></app-single-education>
+  <app-single-education [singleEd]="singleEd" (onDel)="onDeleteEducation($event)" (onEdit)="onEditEducation($event)"  [isLoggedIn]="this.loggedIn"></app-single-education>
 </ng-container>

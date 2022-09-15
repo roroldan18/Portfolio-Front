@@ -27,23 +27,21 @@ export class AddEducationComponent implements OnInit {
     if(this.addMode){
       this.formAddEducation = this.formBuilder.group({
         id: [createID(), [Validators.required]],
-        career_title: ['', [Validators.required]],
-        educational_establishment: ['', [Validators.required]],
+        careerTitle: ['', [Validators.required]],
+        educationalEstablishment: ['', [Validators.required]],
         image: [''],
-        start_date: ['', [Validators.required]], 
-        end_date: ['', [Validators.required]], 
-        user_iduser: ['1', [Validators.required]],
+        startDate: ['', [Validators.required]], 
+        endDate: ['', [Validators.required]], 
         isActual: [false, [Validators.required]],
       })
     } else {
       this.formAddEducation = this.formBuilder.group({
         id: [this.education?.id],
-        career_title: [this.education?.career_title],
-        educational_establishment: [this.education?.educational_establishment],
+        careerTitle: [this.education?.careerTitle],
+        educationalEstablishment: [this.education?.educationalEstablishment],
         image: [this.education?.image],
-        start_date: [this.education?.start_date], 
-        end_date: [this.education?.end_date], 
-        user_iduser: ['1'],
+        startDate: [this.education?.startDate], 
+        endDate: [this.education?.endDate], 
         isActual: [this.education?.isActual],
       })
     }
@@ -52,8 +50,6 @@ export class AddEducationComponent implements OnInit {
   onCreateNewEducation(event: Event){
     event.preventDefault();
     if(this.formAddEducation.valid){
-      console.log('VALID')
-      console.log(this.formAddEducation.value)
       this.addEduc.emit(this.formAddEducation.value)
     } else {
       Swal.fire(
@@ -65,6 +61,7 @@ export class AddEducationComponent implements OnInit {
   }
 
   onEditEducation(event: Event){
+    event.preventDefault();
     if(this.formAddEducation.valid){
       this.edEduc.emit(this.formAddEducation.value);
     } else {

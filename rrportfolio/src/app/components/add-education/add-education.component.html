@@ -2,7 +2,7 @@
   
   <mat-form-field class="example-full-width w-100" appearance="fill">
     <mat-label>Titulo</mat-label>
-    <input matInput formControlName="career_title" placeholder="ex: Contador Público">
+    <input matInput formControlName="careerTitle" placeholder="ex: Contador Público">
     <mat-error *ngIf="formAddEducation.get('career_title')?.hasError('required')">
       El título es <strong>requerido</strong>
     </mat-error>
@@ -10,7 +10,7 @@
   
   <mat-form-field class="example-full-width w-100" appearance="fill">
     <mat-label>Establecimiento</mat-label>
-    <input matInput formControlName="educational_establishment" placeholder="ex: Universidad Argentina de la Empresa">
+    <input matInput formControlName="educationalEstablishment" placeholder="ex: Universidad Argentina de la Empresa">
     <mat-error *ngIf="formAddEducation.get('educational_establishment')?.hasError('required')">
       El establecimiento es <strong>requerido</strong>
     </mat-error>
@@ -24,7 +24,7 @@
   <div>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Start Date</mat-label>
-      <input  formControlName="start_date" matInput [matDatepicker]="picker">
+      <input  formControlName="startDate" matInput [matDatepicker]="picker">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker">
         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -36,7 +36,7 @@
   <div>
     <mat-form-field class="example-full-width" appearance="fill" *ngIf="!this.formAddEducation.get('isActual')?.value">
       <mat-label>End Date</mat-label>
-      <input formControlName="end_date" matInput [matDatepicker]="picker1">
+      <input formControlName="endDate" matInput [matDatepicker]="picker1">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker1">
         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>

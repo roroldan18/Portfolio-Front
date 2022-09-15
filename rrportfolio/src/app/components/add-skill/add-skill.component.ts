@@ -34,17 +34,15 @@ export class AddSkillComponent implements OnInit {
       this.addSkillForm = this.formBuilder.group({
         id: [createID(), [Validators.required]],
         name: ['', [Validators.required]],
-        icon: [''],
-        ability_percentage: [0, [Validators.required, Validators.min(1), Validators.max(100)]],
-        user_iduser: ['1', [Validators.required]],
+        icon: ['', [Validators.required]],
+        abilityPercentage: [0, [Validators.required, Validators.min(1), Validators.max(100)]],
       })
     } else {
       this.addSkillForm = this.formBuilder.group({
         id: [this.skill?.id],
         name: [this.skill?.name, [Validators.required]],
-        icon: [this.skill?.icon],
-        ability_percentage: [this.skill?.ability_percentage, [Validators.required, Validators.min(1), Validators.max(100)]],
-        user_iduser: [this.skill?.user_iduser, [Validators.required]],
+        icon: [this.skill?.icon, [Validators.required]],
+        abilityPercentage: [this.skill?.abilityPercentage, [Validators.required, Validators.min(1), Validators.max(100)]],
       })
     }
   }
@@ -66,12 +64,13 @@ export class AddSkillComponent implements OnInit {
 
   onClickDelete(event:Event){
     event.preventDefault(); 
-    this.onDelete.emit(this.skill?.id);
+    this.onDelete.emit(this.skill?.id.toString());
   }
 
   onEditSkill(event:Event){
     event.preventDefault();
 
+    
     if(this.addSkillForm.valid){
       this.onEdit.emit(this.addSkillForm.value);
     } else{

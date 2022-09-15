@@ -37,6 +37,8 @@ import { SingleEducationComponent } from './components/single-education/single-e
 import { AddSkillComponent } from './components/add-skill/add-skill.component';
 import { AddPortfolioComponent } from './components/add-portfolio/add-portfolio.component';
 import { SinglePortfolioComponent } from './components/single-portfolio/single-portfolio.component';
+import { interceptorProvider } from './services/interceptor.service';
+import { AddSocialNetworkComponent } from './components/add-social-network/add-social-network.component';
 
 
 
@@ -50,7 +52,7 @@ import { SinglePortfolioComponent } from './components/single-portfolio/single-p
     ExperienceSectionComponent,
     EducationSectionComponent,
     SkillsSectionComponent,
-    PortfolioComponent,
+    PortfolioComponent, 
     FooterComponent,
     LoginComponent,
     MainPageComponent,
@@ -62,7 +64,8 @@ import { SinglePortfolioComponent } from './components/single-portfolio/single-p
     SingleEducationComponent,
     AddSkillComponent,
     AddPortfolioComponent,
-    SinglePortfolioComponent
+    SinglePortfolioComponent,
+    AddSocialNetworkComponent
   ],
   imports: [
     BrowserModule,
@@ -96,7 +99,8 @@ import { SinglePortfolioComponent } from './components/single-portfolio/single-p
     BrowserAnimationsModule
   ],
   providers: [
-    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}}
+    {provide: MAT_FORM_FIELD_DEFAULT_OPTIONS, useValue: {appearance: 'fill'}},
+    interceptorProvider
   ],
   bootstrap: [AppComponent]
 })

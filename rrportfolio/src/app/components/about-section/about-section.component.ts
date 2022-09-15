@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PersonalInfoService } from 'src/app/services/personal-info.service';
 import { IPersonalInfo } from 'src/interfaces/interfaces';
+import { LoginService } from '../../services/login.service';
+import { ProfileDto } from 'src/model/profile-dto';
+import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-about-section',
@@ -10,21 +14,35 @@ import { IPersonalInfo } from 'src/interfaces/interfaces';
 })
 export class AboutSectionComponent implements OnInit {
   formAbout: FormGroup;
-  aboutInfo:IPersonalInfo['about_me'] = '';
   editAbout: boolean = false;
+  loggedIn: boolean = false;
+  personalInfo: IPersonalInfo = {} as IPersonalInfo;
+  private idUser: number;
+  private username: string|null;
 
   constructor(
-    private service:PersonalInfoService,
+    private personalInfoService:PersonalInfoService,
     private formBuilder: FormBuilder,
+    private userService: UserService,
+    private loginService: LoginService
   ) { 
     this.formAbout = this.formBuilder.group({
-      aboutText: ['',[Validators.required, Validators.maxLength(255)]],
+      aboutMe: ['',[Validators.required, Validators.maxLength(255)]],
     })
-  }
 
+    this.loginService.loggedIn.subscribe(res => this.loggedIn = res);
+
+    
+  }
+  
   ngOnInit(): void {
-    this.service.getPersonalInfo().subscribe((data) => {
-      this.aboutInfo = data[0].about_me;
+    if(this.loggedIn){
+      this.username = window.sessionStorage.getItem('AuthUsername');
+      this.userService.getUserByUsername(this.username as string).subscribe(res => this.idUser = res.id);
+    }
+
+    this.personalInfoService.getPersonalInfo().subscribe((data) => {
+      this.personalInfo = data[0];
     });
   }
 
@@ -36,7 +54,16 @@ export class AboutSectionComponent implements OnInit {
   onEnviarAbout(event: Event) {
     event.preventDefault();
     if(this.formAbout.valid){
-      this.aboutInfo = this.formAbout.value.aboutText;
+
+      const aboutToPut = new ProfileDto(this.personalInfo.bannerImage, this.personalInfo.profileImage, this.personalInfo.name, this.personalInfo.lastName, this.personalInfo.title, this.personalInfo.province, this.personalInfo.country, this.personalInfo.telephone, this.personalInfo.email, this.formAbout.value.aboutMe,this.personalInfo.logo, this.idUser);
+      this.personalInfoService.putPersonalInfo(aboutToPut, this.personalInfo.id);
+      Swal.fire({
+        icon: 'success',
+        title: 'About Me Edited',
+        showConfirmButton: false,
+        timer: 1500
+      })
+      this.personalInfo.aboutMe = this.formAbout.value.aboutMe;
       this.onClickEdit();
     } else {
       this.formAbout.markAllAsTouched();

@@ -3,6 +3,11 @@ import {  unObjectExp } from 'src/app/helpers/unObject';
 import { ExperiencesInfoService } from 'src/app/services/experiences-info.service';
 import { IExperience } from 'src/interfaces/interfaces';
 import Swal from 'sweetalert2';
+import { LoginService } from 'src/app/services/login.service';
+import { ExperienceDto } from 'src/model/experience-dto';
+import { TokenService } from '../../services/token.service';
+import { NumberSymbol } from '@angular/common';
+import { UserService } from 'src/app/services/user.service';
 
 @Component({
   selector: 'app-experience-section',
@@ -12,10 +17,20 @@ import Swal from 'sweetalert2';
 export class ExperienceSectionComponent implements OnInit {
   addExperience: boolean = false;
   experiences: IExperience[] = [];
+  loggedIn: boolean=false;
+  private idUser: number;
+  private username: string|null;
   
   constructor(
     private experienceService: ExperiencesInfoService,
+    private userService: UserService,
+    private loginService: LoginService
   ) {
+    this.loginService.loggedIn.subscribe(res => this.loggedIn = res);
+    if(this.loggedIn){
+      this.username = window.sessionStorage.getItem('AuthUsername');
+      this.userService.getUserByUsername(this.username as string).subscribe(res => this.idUser = res.id);
+    }
   }
   
   ngOnInit(): void {
@@ -29,7 +44,14 @@ export class ExperienceSectionComponent implements OnInit {
   }
 
   onEditExperience(experience:IExperience){
-    this.experienceService.putExperience(experience);
+    const expDto:ExperienceDto = new ExperienceDto(experience.company, experience.title, experience.description,experience.timeWork, experience.startDate, experience.endDate, experience.logo, experience.isActual, this.idUser);
+    this.experienceService.putExperience(expDto, experience.id);
+    Swal.fire({
+      icon: 'success',
+      title: 'Experience Edited',
+      showConfirmButton: false,
+      timer: 1500
+    })
     this.experiences = unObjectExp(this.experiences, experience);
   }
 
@@ -38,7 +60,14 @@ export class ExperienceSectionComponent implements OnInit {
   }
 
   onAddExperience(experience: IExperience){
-    this.experienceService.postExperience(experience);
+    const expDto:ExperienceDto = new ExperienceDto(experience.company, experience.title, experience.description,experience.timeWork, experience.startDate, experience.endDate, experience.logo, experience.isActual, this.idUser);
+    this.experienceService.postExperience(expDto);
+    Swal.fire({
+      icon: 'success',
+      title: 'Experience Added',
+      showConfirmButton: false,
+      timer: 1500
+    })
     this.onAddExperienceButton();
     this.experiences.unshift(experience);
   }
@@ -59,8 +88,8 @@ export class ExperienceSectionComponent implements OnInit {
           'La experiencia fue eliminada.',
           'success'
         )
-        this.experienceService.deleteExperience(id);
-        this.experiences = this.experiences.filter(exp => exp.id !== id);
+        this.experienceService.deleteExperience(parseInt(id));
+        this.experiences = this.experiences.filter(exp => exp.id !== parseInt(id));
       }
     })
   }

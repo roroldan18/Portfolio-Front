@@ -1,4 +1,5 @@
-import { IExperience, IEducation, ISkill, IPortfolio } from '../../interfaces/interfaces';
+import { IExperience, IEducation, ISkill, IPortfolio, IPersonalInfo } from '../../interfaces/interfaces';
+import { ISocialNetworkIcon } from 'src/interfaces/interfaces';
 
 
 export const unObjectExp = (objExperiences:IExperience[], singExp:IExperience) =>{
@@ -37,4 +38,14 @@ export const unObjectPort = (objPort:IPortfolio[], singPort:IPortfolio) =>{
     })
 
     return objPort;
+}
+
+export const unObjectSocNet = (objSocNet:ISocialNetworkIcon[], singSocNet:ISocialNetworkIcon) =>{
+  objSocNet.forEach((exp, index) => {
+      if(exp.id === singSocNet.id){
+        objSocNet[index] = singSocNet;
+      }
+    })
+
+    return objSocNet;
 }

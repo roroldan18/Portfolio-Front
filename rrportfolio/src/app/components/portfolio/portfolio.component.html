@@ -3,16 +3,16 @@
     <h2>Portafolio</h2>
   </div>
   <div class="rightSide">
-    <button class="btn" (click)="onShowAdd()"><img src="./assets/add.png" alt="Agregar"></button>
+    <button *ngIf="this.loggedIn" class="btn" (click)="onShowAdd()"><img src="./assets/add.png" alt="Agregar"></button>
   </div>
 </div>
 
-<div *ngIf="this.showAdd" class="m-3">
+<div *ngIf="this.showAdd && this.loggedIn" class="m-3">
   <app-add-portfolio [addMode]="true" (addPort)="addPortfolio($event)"></app-add-portfolio>
 </div>
 <!-- Renderizando Proyectos-->
 <div class="sectionInfo flex-wrap">
   <ng-container *ngFor="let sPort of portfolio">
-    <app-single-portfolio [portfolio]="sPort" (onDelete)="deletePortfolio($event)" (onEdit)="editPortfolio($event)"></app-single-portfolio>
+    <app-single-portfolio [isLoggedIn]="this.loggedIn" [portfolio]="sPort" (onDelete)="deletePortfolio($event)" (onEdit)="editPortfolio($event)"></app-single-portfolio>
   </ng-container>
 </div>

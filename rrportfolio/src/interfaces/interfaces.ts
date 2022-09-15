@@ -1,22 +1,25 @@
 export interface ISocialNetworkIcon {
+  id: number,
   url: string,
   downloadable: boolean,
   icon: string,
   name: string,
+  idUser: IUser['id'],
 }
 
 export interface IPersonalInfo {
-  idProfile: string,
-  idUser: string,
-  banner_image: string,
-  profile_image: string,
+  id: number,
+  idUser: IUser['id'],
+  bannerImage: string,
+  profileImage: string,
   name: string,
-  last_name: string,
+  lastName: string,
+  telephone: string,
   email: string,
   title: string,
   province: string,
   country: string,
-  about_me:string,
+  aboutMe:string,
   logo: string,
 }
 
@@ -27,46 +30,53 @@ enum typeWork {
 }
 
 export interface IExperience {
-  id: string,
+  id: number,
   company: string,
   title: string,
   description: string
-  time_work: typeWork,
-  start_date: string,
-  end_date?: string,
+  timeWork: typeWork,
+  startDate: Date,
+  endDate?: Date,
   isActual: boolean,
-  idUser: string,
-  logo?:string
+  idUser: IUser['id'],
+  logo:string
 }
 
 
 export interface IEducation {
-  id: string,
-  career_title:string,
-  educational_establishment: string,
+  id: number,
+  careerTitle:string,
+  educationalEstablishment: string,
   image?: string,
-  start_date: string,
-  end_date: string, 
-  user_iduser: string,
+  startDate: Date,
+  endDate: Date, 
+  idUser: IUser['id'],
   isActual: boolean,
 }
 
 export interface ISkill {
-  id: string,
+  id: number,
   name: string,
-  icon?: string,
-  ability_percentage: number,
-  user_iduser: string,
+  icon: string,
+  abilityPercentage: number,
+  idUser: IUser['id'],
 }
 
 
 export interface IPortfolio {
-  id: string,
+  id: number,
   name: string,
   description: string,
   image: string,
   url: string,
-  user_iduser: string,
-  start_date:string,
-  end_date:string,
+  idUser: IUser['id'],
+  startDate:Date,
+  endDate:Date,
+}
+
+export interface IUser {
+  id: number,
+  username: string,
+  password: string,
+  roles: string[]
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
+import { formatDate } from 'src/app/helpers/formatDate';
 import { IPortfolio } from 'src/interfaces/interfaces';
 
 @Component({
@@ -8,6 +9,7 @@ import { IPortfolio } from 'src/interfaces/interfaces';
 })
 export class SinglePortfolioComponent implements OnInit {
   @Input() portfolio: IPortfolio;
+  @Input() isLoggedIn: boolean;
   @Output() onEdit = new EventEmitter<IPortfolio>();
   @Output() onDelete = new EventEmitter<string>();
   showEditPort:boolean = false;
@@ -26,6 +28,15 @@ export class SinglePortfolioComponent implements OnInit {
   }
   onDeletePort(id: string){
     this.onDelete.emit(id);
+  }
+  
+  getDate(date:Date|undefined|null):string{
+    if(date===undefined || date === null){
+      return 'Actualidad';
+    } else {
+      const dt = new Date(date)
+      return  formatDate(dt);
+    }
   }
 
 }

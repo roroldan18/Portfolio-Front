@@ -3,12 +3,12 @@
     <h2>Habilidades</h2>
   </div>
   <div class="rightSide">
-    <button class="btn" (click)="this.onClickShowAdd()"><img src="./assets/add.png" alt="Agregar"></button>
-    <button class="btn" (click)="this.onClickShowEdit()"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
+    <button *ngIf="this.loggedIn" class="btn" (click)="this.onClickShowAdd()"><img src="./assets/add.png" alt="Agregar"></button>
+    <button *ngIf="this.loggedIn" class="btn" (click)="this.onClickShowEdit()"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
   </div>
 </div>
 
-<ng-container *ngIf="this.showAdd">
+<ng-container *ngIf="this.showAdd && this.loggedIn">
   <app-add-skill [addMode]="true" (onAdd)="addSkill($event)"></app-add-skill>
 </ng-container>
 <ng-container *ngIf="this.showEdit">
@@ -28,7 +28,7 @@
       </div>
       <circle-progress
         class="circleProgress"
-        [percent]=this.skill.ability_percentage
+        [percent]=this.skill.abilityPercentage
         [animationDuration]="500"
       ></circle-progress>
     </div>

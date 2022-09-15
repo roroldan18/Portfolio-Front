@@ -1,7 +1,8 @@
-import { EventEmitter, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { IExperience } from 'src/interfaces/interfaces';
+import { ExperienceDto } from 'src/model/experience-dto';
+import { IExperience } from '../../interfaces/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { IExperience } from 'src/interfaces/interfaces';
 
 
 export class ExperiencesInfoService {
-  private url = 'http://localhost:5001/experience';
+  private url = 'http://localhost:8080/experience';
   
   private httpOptions = {
     headers: new HttpHeaders({
@@ -24,18 +25,22 @@ export class ExperiencesInfoService {
    }
 
   getExperiences(): Observable<IExperience[]> {
-    return this.http.get<IExperience[]>(this.url);
+    return this.http.get<IExperience[]>(this.url+"/");
   }
 
-  postExperience(experience: IExperience){
-    this.http.post<IExperience>(`${this.url}`, experience, this.httpOptions).subscribe();
+  getExperienceByUser(idUser: number): Observable<IExperience[]> {
+    return this.http.get<IExperience[]>(this.url+`/user/${idUser}`);
   }
 
-  putExperience(experience: IExperience){
-    this.http.put<IExperience>(`${this.url}/${experience.id}`, experience, this.httpOptions).subscribe()
+  postExperience(experience: ExperienceDto){
+    this.http.post<ExperienceDto>(`${this.url}/`, experience, this.httpOptions).subscribe();
   }
-  deleteExperience(id:string){
-    this.http.delete<IExperience>(`${this.url}/${id}`).subscribe()
+
+  putExperience(experience: ExperienceDto, id:number){
+    this.http.put<ExperienceDto>(`${this.url}/${id}`, experience, this.httpOptions).subscribe()
+  }
+  deleteExperience(id:number){
+    this.http.delete<ExperienceDto>(`${this.url}/${id}`).subscribe()
   }
 
 

@@ -10,14 +10,14 @@
         🧐 No deberías estar acá  <br>
         😜 Así que no intentes loguearte si no eres: YO 
       </div>
-      <form>
+      <form [formGroup]="loginForm" (ngSubmit)="onLogin($event)">
         <div class="card">
           <div class="contCard">
-            <input type="text" name="user" id="user" autocomplete="username" placeholder="Mi usuario ultra secreto">
-            <input type="password" name="password" autocomplete="current-password" id="password" placeholder="Mi contraseña ultra secreta">
+            <input type="text" id="user" matInput formControlName="username" placeholder="Mi usuario ultra secreto">
+            <input type="password" matInput formControlName="password" id="password" placeholder="Mi contraseña ultra secreta">
           </div>
           <div class="footCard">
-            <button class="btn btn-outline-dark login">Login</button>
+            <button class="btn btn-outline-dark login" type="submit">Login</button>
           </div>
         </div>
       </form>

@@ -1,18 +1,18 @@
 <div class="sectionInfo">
   <div class="leftSide">
     <h2>Acerca de</h2>
-    <p>{{this.aboutInfo}}</p>
+    <p>{{this.personalInfo.aboutMe}}</p>
   </div>
   <div class="rightSide">
-    <button class="btn"><img src="./assets/edit.png" alt="Lapiz de edición" (click)="onClickEdit()"></button>
+    <button *ngIf="this.loggedIn" class="btn"><img src="./assets/edit.png" alt="Lapiz de edición" (click)="onClickEdit()"></button>
   </div>
 </div>
 
-<div *ngIf="this.editAbout" class="m-3">
+<div *ngIf="this.editAbout && this.loggedIn" class="m-3">
   <form class="formURLBanner" [formGroup]="formAbout" (ngSubmit)="onEnviarAbout($event)">
     <mat-form-field class="example-full-width w-100" appearance="fill">
       <mat-label>About - <i>Max 255 caracteres</i></mat-label>
-      <textarea matInput  formControlName="aboutText" cols="30" rows="10"></textarea>
+      <textarea matInput  formControlName="aboutMe" cols="30" rows="10"></textarea>
     </mat-form-field>
     <div class=" m-3">
       <button mat-button color="primary" type="submit">Save</button>

@@ -11,11 +11,26 @@
         </li>
       </ul>
       <div class="navbar-nav flex flex-row align-items-center">
+        <button *ngIf="this.loggedIn" class="btn" (click)="this.onClickShowAdd()"><img src="./assets/add.png" alt="Agregar"></button>
+        <button *ngIf="this.loggedIn" class="btn" (click)="this.onClickShowEdit()"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
         <span *ngFor="let socialNetwork of socialNetworks">
           <app-icon [url]="socialNetwork.url" [name]="socialNetwork.name" [icon]="socialNetwork.icon" [downloadable]="socialNetwork.downloadable" ></app-icon>
         </span>
-        <a routerLink="/login"><button type="button" class="btn btn-primary m- 1 iconNav">Login</button></a>
+        <a *ngIf="!this.loggedIn; else viewLogout" routerLink="/login"><button type="button" class="btn btn-primary m- 1 iconNav">Login</button></a>
       </div>
     </div>
   </div>
 </nav>
+
+<ng-container *ngIf="this.showAdd && this.loggedIn">
+  <app-add-social-network [addMode]="true" (onAdd)="createSocialNetwork($event)"></app-add-social-network>
+</ng-container>
+<ng-container *ngIf="this.showEdit">
+  <ng-container *ngFor="let socialNetwork of socialNetworks">
+    <app-add-social-network [addMode]="false" [socialNetwork]="socialNetwork" (onEdit)="editSocialNetwork($event)" (onDelete)="deleteSocialNetwork($event)"></app-add-social-network>
+  </ng-container>
+</ng-container>
+
+<ng-template #viewLogout>
+  <a routerLink="/inicio" (click)="onLogout()"><button type="button" class="btn btn-primary m- 1 iconNav">Logout</button></a>
+</ng-template>

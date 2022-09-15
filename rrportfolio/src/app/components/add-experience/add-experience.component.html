@@ -29,10 +29,10 @@
   </mat-form-field>
   
   <div class="m-3">
-    <mat-error *ngIf="formAddExperience.get('time_work')?.hasError('required')">
+    <mat-error *ngIf="formAddExperience.get('timeWork')?.hasError('required')">
       Type of work is <strong>required</strong>
     </mat-error>
-    <mat-radio-group formControlName="time_work" aria-label="Select an option" >
+    <mat-radio-group formControlName="timeWork" aria-label="Select an option" >
       <mat-radio-button class="m-2" value="Part Time">Part Time</mat-radio-button>
       <mat-radio-button class="m-2" value="Full Time">Full Time</mat-radio-button>
       <mat-radio-button class="m-2" value="Freelance">Freelance</mat-radio-button>
@@ -42,7 +42,7 @@
   <div>
     <mat-form-field class="example-full-width" appearance="fill">
       <mat-label>Start Date</mat-label>
-      <input  formControlName="start_date" matInput [matDatepicker]="picker">
+      <input  formControlName="startDate" matInput [matDatepicker]="picker">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker">
         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
@@ -54,7 +54,7 @@
   <div>
     <mat-form-field class="example-full-width" appearance="fill" *ngIf="!this.formAddExperience.get('isActual')?.value">
       <mat-label>End Date</mat-label>
-      <input formControlName="end_date" matInput [matDatepicker]="picker1">
+      <input formControlName="endDate" matInput [matDatepicker]="picker1">
       <mat-hint>MM/DD/YYYY</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="picker1">
         <mat-icon matDatepickerToggleIcon>keyboard_arrow_down</mat-icon>
