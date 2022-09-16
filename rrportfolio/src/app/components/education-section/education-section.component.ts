@@ -37,7 +37,7 @@ export class EducationSectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.educationService.getEducations().subscribe(education => {
-      this.education = education;
+      this.education = education.sort((a: IEducation, b: IEducation) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
     })
 
   }
@@ -52,6 +52,7 @@ export class EducationSectionComponent implements OnInit {
       new Alerts('success', "Added!", `Education: ${education.careerTitle} added!`).showSuccess();
       this.onShowAdd();
       this.education.push({...education, id: response.id});
+      this.education.sort((a: IEducation, b: IEducation) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
     },
       (error: HttpErrorResponse) => {
         new Alerts("error").showError();

@@ -1,4 +1,4 @@
 # Portfolio
 
-In the "rrportfolio" folder you will see the Angular project.
-In the "static" folder is the sketch in HTML.
+This project was created with Angular for the Front end and Java Spring Boot for the Back end.
+MySQL in Database.

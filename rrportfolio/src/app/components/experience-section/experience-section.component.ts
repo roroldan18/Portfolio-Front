@@ -41,7 +41,7 @@ export class ExperienceSectionComponent implements OnInit {
 
   onGetExperience(){
     this.experienceService.getExperiences().subscribe((experiences:IExperience[]) => {
-      this.experiences = experiences;
+      this.experiences = experiences.sort((a: IExperience, b: IExperience) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
     })
   }
 
@@ -72,6 +72,7 @@ export class ExperienceSectionComponent implements OnInit {
       new Alerts('success', 'Added', `Experience: ${experience.title} in ${experience.company} added!`).showSuccess()
       this.onAddExperienceButton();
       this.experiences.push({...experience, id: response.id});
+      this.experiences.sort((a: IExperience, b: IExperience) => new Date(b.startDate).getTime() - new Date(a.startDate).getTime());
     },
       (error: HttpErrorResponse) => {
         new Alerts('error').showError();
