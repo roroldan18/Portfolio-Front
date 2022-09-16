@@ -28,59 +28,14 @@ export class PersonalInfoService {
     return this.http.get<IPersonalInfo[]>(this.url+`/user/${idUser}`);
   }
 
-  postPersonalInfo(personalInfo: ProfileDto) {
-    this.http.post<ProfileDto>(this.url+"/", personalInfo, this.httpOptions).subscribe( (response) => {
-      Swal.fire(
-        'Added!',
-        `Personal Info - added`,
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    );;
+  postPersonalInfo(personalInfo: ProfileDto):Observable<any> {
+    return this.http.post<ProfileDto>(this.url+"/", personalInfo, this.httpOptions);
   }
 
-  putPersonalInfo(personalInfo: ProfileDto, id:number) {
-    this.http.put<ProfileDto>(`${this.url}/${id}`, personalInfo, this.httpOptions).subscribe( (response) => {
-      Swal.fire(
-        'Edited!',
-        `Personal Info edited`,
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    );;
+  putPersonalInfo(personalInfo: ProfileDto, id:number):Observable<any> {
+    return this.http.put<ProfileDto>(`${this.url}/${id}`, personalInfo, this.httpOptions);
   }
-  deletePersonalInfo(id: number) {
-    this.http.delete<IPersonalInfo>(`${this.url}/${id}`).subscribe( (response) => {
-      Swal.fire(
-        'Deleted!',
-        `Personal Info Deleted`,
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    );
+  deletePersonalInfo(id: number):Observable<any> {
+    return this.http.delete<IPersonalInfo>(`${this.url}/${id}`);
   }
 }

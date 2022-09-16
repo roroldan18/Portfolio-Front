@@ -27,60 +27,15 @@ export class IconService {
     return this.http.get<ISocialNetworkIcon[]>(this.url+`/user/${idUser}`);
   }
 
-  postSocNet(socNet: SocialNetworkDto){
-    this.http.post<ISocialNetworkIcon>(`${this.url}/`, socNet, this.httpOptions).subscribe( (response) => {
-      Swal.fire(
-        'Added!',
-        `Social Network: ${socNet.name} Added`,
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    );
+  postSocNet(socNet: SocialNetworkDto):Observable<any>{
+    return this.http.post<ISocialNetworkIcon>(`${this.url}/`, socNet, this.httpOptions);
   }
 
-  putSocNet(socNet: SocialNetworkDto, id:number){
-    this.http.put<SocialNetworkDto>(`${this.url}/${id}`, socNet, this.httpOptions).subscribe( (response) => {
-      Swal.fire(
-        'Edited!',
-        `Social Network: ${socNet.name} Edited`,
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    );
+  putSocNet(socNet: SocialNetworkDto, id:number):Observable<any>{
+    return this.http.put<SocialNetworkDto>(`${this.url}/${id}`, socNet, this.httpOptions);
   }
-  deleteSocNet(id:string){
-    this.http.delete<ISocialNetworkIcon>(`${this.url}/${id}`).subscribe( (response) => {
-      Swal.fire(
-        'Deleted!',
-        `Social Network Deleted`,
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    );
+  deleteSocNet(id:string):Observable<any>{
+    return this.http.delete<ISocialNetworkIcon>(`${this.url}/${id}`);
   }
 
 

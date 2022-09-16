@@ -29,62 +29,16 @@ export class SkillsService {
     return this.http.get<ISkill[]>(this.url+`/user/${idUser}`);
   }
 
-  postSkill(skill: SkillDto){
-    console.log(skill)
-    this.http.post<SkillDto>(`${this.url}/`, skill, this.httpOptions).subscribe( (response) => {
-      Swal.fire(
-        'Added!',
-        `Skill: ${skill.name} - added`,
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    );
+  postSkill(skill: SkillDto):Observable<any>{
+    return this.http.post<SkillDto>(`${this.url}/`, skill, this.httpOptions);
   }
 
-  putSkill(skill: SkillDto, id:number){
-    return this.http.put<any>(`${this.url}/${id}`, skill, this.httpOptions).subscribe( (response) => {
-      Swal.fire({
-        icon: 'success',
-        title: `Skill ${skill.name} - Edited`,
-        showConfirmButton: false,
-        timer: 1500
-      })
-  },
-  (error: HttpErrorResponse) => {
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops, something went wrong.',
-      showConfirmButton: false,
-      timer: 1500
-    })
-  })
+  putSkill(skill: SkillDto, id:number):Observable<any>{
+    return this.http.put<any>(`${this.url}/${id}`, skill, this.httpOptions);
   }
 
-  deleteSkill(id:number){
-    this.http.delete<SkillDto>(`${this.url}/${id}`).subscribe( (response) => {
-      Swal.fire(
-        'Deleted!',
-        'Skill deleted',
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    )
+  deleteSkill(id:number):Observable<any>{
+    return this.http.delete<SkillDto>(`${this.url}/${id}`);
   }
   
 }

@@ -8,6 +8,8 @@ import { ExperienceDto } from 'src/model/experience-dto';
 import { TokenService } from '../../services/token.service';
 import { NumberSymbol } from '@angular/common';
 import { UserService } from 'src/app/services/user.service';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Alerts } from 'src/model/Alerts';
 
 @Component({
   selector: 'app-experience-section',
@@ -45,8 +47,18 @@ export class ExperienceSectionComponent implements OnInit {
 
   onEditExperience(experience:IExperience){
     const expDto:ExperienceDto = new ExperienceDto(experience.company, experience.title, experience.description,experience.timeWork, experience.startDate, experience.endDate, experience.logo, experience.isActual, this.idUser);
-    this.experienceService.putExperience(expDto, experience.id);
-    this.experiences = unObjectExp(this.experiences, experience);
+
+    console.log(experience)
+
+    this.experienceService.putExperience(expDto, experience.id).subscribe( (response) => {
+      new Alerts("success", 'Edited', `Experience: ${experience.title} in ${experience.company} edited!`).showSuccess();
+      this.experiences = unObjectExp(this.experiences, experience);
+    },
+      (error: HttpErrorResponse) => {
+        new Alerts("error").showError();
+      }
+    );
+
   }
 
   onAddExperienceButton() {
@@ -55,9 +67,17 @@ export class ExperienceSectionComponent implements OnInit {
 
   onAddExperience(experience: IExperience){
     const expDto:ExperienceDto = new ExperienceDto(experience.company, experience.title, experience.description,experience.timeWork, experience.startDate, experience.endDate, experience.logo, experience.isActual, this.idUser);
-    this.experienceService.postExperience(expDto);
-    this.onAddExperienceButton();
-    this.experiences.unshift(experience);
+    
+    this.experienceService.postExperience(expDto).subscribe( (response) => {
+      new Alerts('success', 'Added', `Experience: ${experience.title} in ${experience.company} added!`).showSuccess()
+      this.onAddExperienceButton();
+      this.experiences.push({...experience, id: response.id});
+    },
+      (error: HttpErrorResponse) => {
+        new Alerts('error').showError();
+      }
+    );
+    
   }
 
   onDeleteExperience(id:string){
@@ -71,8 +91,15 @@ export class ExperienceSectionComponent implements OnInit {
       confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.experienceService.deleteExperience(parseInt(id));
-        this.experiences = this.experiences.filter(exp => exp.id !== parseInt(id));
+        this.experienceService.deleteExperience(parseInt(id)).subscribe( (response) => {
+          new Alerts('success', 'Deleted', 'Experience deleted').showSuccess(); 
+          this.experiences = this.experiences.filter(exp => exp.id !== parseInt(id));
+        },
+          (error: HttpErrorResponse) => {
+            new Alerts('error').showError();
+          }
+        );
+
       }
     })
   }

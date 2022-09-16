@@ -8,6 +8,8 @@ import { IPersonalInfo } from 'src/interfaces/interfaces';
 import { InfoContactComponent } from '../info-contact/info-contact.component';
 import { UserService } from 'src/app/services/user.service';
 import { ProfileDto } from 'src/model/profile-dto';
+import { Alerts } from 'src/model/Alerts';
+import { HttpErrorResponse } from '@angular/common/http';
 
 
 @Component({
@@ -90,7 +92,13 @@ export class MainSectionComponent implements OnInit {
     const obj = objFormNotEmpty(this.formInfo.value);
     this.personalInfo = {...this.personalInfo, ...obj}; 
     const profileToPost = new ProfileDto(this.personalInfo.bannerImage, this.personalInfo.profileImage, this.personalInfo.name, this.personalInfo.lastName, this.personalInfo.title, this.personalInfo.province, this.personalInfo.country, this.personalInfo.telephone, this.personalInfo.email, this.personalInfo.aboutMe, this.personalInfo.logo, this.idUser);
-    this.service.putPersonalInfo(profileToPost, this.personalInfo.id);
+    this.service.putPersonalInfo(profileToPost, this.personalInfo.id).subscribe( (response) => {
+      new Alerts('success', 'Edited!', `Personal info edited`);
+    },
+      (error: HttpErrorResponse) => {
+        new Alerts('error').showError();
+      }
+    );
   }
 
   openDialog(): void {

@@ -1,6 +1,8 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { unObjectEdu } from 'src/app/helpers/unObject';
 import { EducationService } from 'src/app/services/education.service';
+import { Alerts } from 'src/model/Alerts';
 import { EducationDto } from 'src/model/education-dto';
 import Swal from 'sweetalert2';
 import { IEducation } from '../../../interfaces/interfaces';
@@ -37,6 +39,7 @@ export class EducationSectionComponent implements OnInit {
     this.educationService.getEducations().subscribe(education => {
       this.education = education;
     })
+
   }
 
   onShowAdd(){
@@ -45,15 +48,28 @@ export class EducationSectionComponent implements OnInit {
 
   addEducation(education:IEducation){
     const educ = new EducationDto(education.careerTitle, education.educationalEstablishment, education.startDate, education.endDate, education.isActual, this.idUser, education.image);
-    this.educationService.postEducation(educ);
-    this.onShowAdd();
-    this.education.unshift(education);
+    this.educationService.postEducation(educ).subscribe( (response) => {
+      new Alerts('success', "Added!", `Education: ${education.careerTitle} added!`).showSuccess();
+      this.onShowAdd();
+      this.education.push({...education, id: response.id});
+    },
+      (error: HttpErrorResponse) => {
+        new Alerts("error").showError();
+      }
+    );
   }
 
   onEditEducation(education:IEducation){
     const educ = new EducationDto(education.careerTitle, education.educationalEstablishment, education.startDate, education.endDate, education.isActual, this.idUser, education.image);
-    this.educationService.putEducation(educ, education.id);
-    this.education = unObjectEdu(this.education, education);
+
+    this.educationService.putEducation(educ, education.id).subscribe( (response) => {
+      new Alerts('success', "Edited!", `Education: ${education.careerTitle} edited!`).showSuccess();
+      this.education = unObjectEdu(this.education, education);
+    },
+      (error: HttpErrorResponse) => {
+        new Alerts('error').showError();
+      }
+    );
   }
 
   onDeleteEducation(id:string){
@@ -67,8 +83,14 @@ export class EducationSectionComponent implements OnInit {
       confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.educationService.deleteEducation(parseInt(id));
-        this.education = this.education.filter(exp => exp.id !== parseInt(id));
+        this.educationService.deleteEducation(parseInt(id)).subscribe( (response) => {
+          new Alerts("success", "Deleted", "Education deleted").showSuccess();
+          this.education = this.education.filter(exp => exp.id !== parseInt(id));
+        },
+          (error: HttpErrorResponse) => {
+            new Alerts("error").showError();
+          }
+        );
       }
     })
 

@@ -5,6 +5,8 @@ import { IPersonalInfo } from 'src/interfaces/interfaces';
 import { LoginService } from '../../services/login.service';
 import { ProfileDto } from 'src/model/profile-dto';
 import { UserService } from 'src/app/services/user.service';
+import { Alerts } from 'src/model/Alerts';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-about-section',
@@ -54,9 +56,16 @@ export class AboutSectionComponent implements OnInit {
     event.preventDefault();
     if(this.formAbout.valid){
       const aboutToPut = new ProfileDto(this.personalInfo.bannerImage, this.personalInfo.profileImage, this.personalInfo.name, this.personalInfo.lastName, this.personalInfo.title, this.personalInfo.province, this.personalInfo.country, this.personalInfo.telephone, this.personalInfo.email, this.formAbout.value.aboutMe,this.personalInfo.logo, this.idUser);
-      this.personalInfoService.putPersonalInfo(aboutToPut, this.personalInfo.id);
-      this.personalInfo.aboutMe = this.formAbout.value.aboutMe;
-      this.onClickEdit();
+      this.personalInfoService.putPersonalInfo(aboutToPut, this.personalInfo.id).subscribe( (response) => {
+        new Alerts('success', 'Edited!', `About Me edited`);
+        this.personalInfo.aboutMe = this.formAbout.value.aboutMe;
+        this.onClickEdit();
+      },
+        (error: HttpErrorResponse) => {
+          new Alerts('error').showError();
+        }
+      );
+
     } else {
       this.formAbout.markAllAsTouched();
     }

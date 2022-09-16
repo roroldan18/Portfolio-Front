@@ -7,6 +7,8 @@ import { TokenService } from '../../services/token.service';
 import { UserService } from '../../services/user.service';
 import Swal from 'sweetalert2';
 import { unObjectSocNet } from 'src/app/helpers/unObject';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Alerts } from 'src/model/Alerts';
 
 @Component({
   selector: 'app-nav-bar',
@@ -59,13 +61,28 @@ export class NavBarComponent implements OnInit {
 
   editSocialNetwork(socialNetwork:ISocialNetworkIcon){
     const socNewToPost = new SocialNetworkDto(socialNetwork.url, socialNetwork.icon, socialNetwork.name, socialNetwork.downloadable, this.idUser);
-    this.socialNetworkService.putSocNet(socNewToPost, socialNetwork.id);
-    this.socialNetworks = unObjectSocNet(this.socialNetworks, socialNetwork);
+    this.socialNetworkService.putSocNet(socNewToPost, socialNetwork.id).subscribe( (response) => {
+      new Alerts('success', 'Edited!', `Social Network: ${socialNetwork.name} Edited`).showSuccess();
+      this.socialNetworks = unObjectSocNet(this.socialNetworks, socialNetwork);
+    },
+      (error: HttpErrorResponse) => {
+        new Alerts('error').showError();
+      }
+    );
+
+
   }
   createSocialNetwork(socialNetwork:ISocialNetworkIcon){
     const socNewToPost = new SocialNetworkDto(socialNetwork.url, socialNetwork.icon, socialNetwork.name, socialNetwork.downloadable, this.idUser);
-    this.socialNetworkService.postSocNet(socNewToPost);
-    this.socialNetworks.unshift(socialNetwork);
+    this.socialNetworkService.postSocNet(socNewToPost).subscribe( (response) => {
+      new Alerts('success', 'Added!', `Social Network: ${socialNetwork.name} Added`).showSuccess();
+      this.socialNetworks.push({...socialNetwork, id: response.id});
+    },
+      (error: HttpErrorResponse) => {
+        new Alerts('error').showError();
+      }
+    );
+
   }
   deleteSocialNetwork(id:string){
     Swal.fire({
@@ -78,8 +95,15 @@ export class NavBarComponent implements OnInit {
       confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.socialNetworkService.deleteSocNet(id);
-        this.socialNetworks = this.socialNetworks.filter(sn => sn.id !== parseInt(id));
+        this.socialNetworkService.deleteSocNet(id).subscribe( (response) => {
+          new Alerts('success', 'Deleted!', `Social Network Deleted`).showSuccess();
+          this.socialNetworks = this.socialNetworks.filter(sn => sn.id !== parseInt(id));
+        },
+          (error: HttpErrorResponse) => {
+            new Alerts('error').showError();
+          }
+        );
+
       }
     })
   }

@@ -1,7 +1,6 @@
 # TODO
 
-## Por backend
+## Modificar los service, que retorne un observable
+Y suscribirme en el componente al observable, para actuar de acuerdo a la respuesta positiva o negativa.
 
-Modificar los Put. Enviar todo el objeto completo, no solo los parámetros con valores. Ya que el método put cambia todo.
-
-EN TODOS LOS POST Y EDIT ENVIAR EL userID
+## Ordenar automarticamente por fecha (Educacion / Experience);

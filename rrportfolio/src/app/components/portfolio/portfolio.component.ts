@@ -4,9 +4,10 @@ import { IPortfolio } from 'src/interfaces/interfaces';
 import Swal from 'sweetalert2';
 import { unObjectPort } from '../../helpers/unObject';
 import { LoginService } from '../../services/login.service';
-import { TokenService } from '../../services/token.service';
 import { UserService } from 'src/app/services/user.service';
 import { PortfolioDto } from '../../../model/portfolio-dto';
+import { Alerts } from '../../../model/Alerts';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-portfolio',
@@ -44,9 +45,16 @@ export class PortfolioComponent implements OnInit {
 
   addPortfolio(port:IPortfolio){
     const portToPost = new PortfolioDto(port.name, port.description, port.image, port.url, port.startDate, port.endDate,this.idUser);
-    this.portfolioService.postPortfolio(portToPost);
-    this.onShowAdd();
-    this.portfolio.unshift(port);
+    this.portfolioService.postPortfolio(portToPost).subscribe( (response) => {
+      new Alerts('success', 'Added!', `Portfolio: ${port.name} added`).showSuccess();
+      this.onShowAdd();
+      this.portfolio.push({...port, id: response.id});
+    },
+      (error: HttpErrorResponse) => {
+        new Alerts('error').showError();
+      }
+    );
+
   }
 
   deletePortfolio(id: string){
@@ -60,16 +68,32 @@ export class PortfolioComponent implements OnInit {
       confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.portfolioService.deletePortfolio(parseInt(id));
-        this.portfolio = this.portfolio.filter(port => port.id !== parseInt(id));
+        this.portfolioService.deletePortfolio(parseInt(id)).subscribe( (response) => {
+          new Alerts('success', 'Deleted!', `Portfolio deleted`).showSuccess();
+          this.portfolio = this.portfolio.filter(port => port.id !== parseInt(id));
+        },
+          (error: HttpErrorResponse) => {
+            new Alerts('error').showError();
+          }
+        );
+
+
       }
     })
   }
 
   editPortfolio(port: IPortfolio){
     const portToPut = new PortfolioDto(port.name, port.description, port.image, port.url, port.startDate, port.endDate,this.idUser);
-    this.portfolioService.putPortfolio(portToPut, port.id);
-    this.portfolio = unObjectPort(this.portfolio, port);
+    this.portfolioService.putPortfolio(portToPut, port.id).subscribe( (response) => {
+      new Alerts('success', 'Edited!', `Portfolio: ${port.name} edited`).showSuccess();
+      this.portfolio = unObjectPort(this.portfolio, port);
+    },
+      (error: HttpErrorResponse) => {
+        new Alerts('error').showError();
+      }
+    )
+
+
   }
 
 }

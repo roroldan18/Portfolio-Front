@@ -7,6 +7,8 @@ import { LoginService } from 'src/app/services/login.service';
 import { TokenService } from 'src/app/services/token.service';
 import { UserService } from 'src/app/services/user.service';
 import { SkillDto } from '../../../model/skill-dto';
+import { HttpErrorResponse } from '@angular/common/http';
+import { Alerts } from 'src/model/Alerts';
 
 @Component({
   selector: 'app-skills-section',
@@ -53,16 +55,29 @@ export class SkillsSectionComponent implements OnInit {
 
   addSkill(skill: ISkill){
     const skillToPost = new SkillDto(skill.name, skill.icon, skill.abilityPercentage, this.idUser);
-    this.skillService.postSkill(skillToPost);
-    this.onClickShowAdd();
-    this.skills.push(skill);
+    this.skillService.postSkill(skillToPost).subscribe( (response) => {
+      new Alerts('success', 'Added!', `Skill: ${skill.name} added`);
+      this.onClickShowAdd();
+      this.skills.push({...skill, id:response.id});
+    },
+      (error: HttpErrorResponse) => {
+        new Alerts('error').showError();
+      }
+    );
   }
 
   editSkill(skill: ISkill){
     const skillToPut = new SkillDto(skill.name, skill.icon, skill.abilityPercentage, this.idUser);
-    this.skillService.putSkill(skillToPut, skill.id);
-    this.skills = unObjectSkill(this.skills, skill);
-    this.onClickShowEdit();
+    this.skillService.putSkill(skillToPut, skill.id).subscribe( (response) => {
+      new Alerts('success', 'Edited!', `Skill: ${skill.name} edited`);
+      this.skills = unObjectSkill(this.skills, skill);
+      this.onClickShowEdit();
+  },
+  (error: HttpErrorResponse) => {
+    new Alerts('error').showError();
+  })
+
+
   }
 
   deleteSkill(id: string){
@@ -77,8 +92,16 @@ export class SkillsSectionComponent implements OnInit {
       confirmButtonText: 'Si, borrar!'
     }).then((result) => {
       if (result.isConfirmed) {
-        this.skillService.deleteSkill(parseInt(id));
-        this.skills = this.skills.filter(skill => skill.id !== parseInt(id));
+        this.skillService.deleteSkill(parseInt(id)).subscribe( (response) => {
+          new Alerts('success', 'Deleted!', `Skill deleted`);
+          this.skills = this.skills.filter(skill => skill.id !== parseInt(id));
+        },
+          (error: HttpErrorResponse) => {
+            new Alerts('error').showError();
+          }
+        )
+
+
       }
     })
   }

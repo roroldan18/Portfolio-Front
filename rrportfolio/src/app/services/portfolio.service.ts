@@ -1,8 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { IPortfolio } from 'src/interfaces/interfaces';
-import Swal from 'sweetalert2';
 import { PortfolioDto } from '../../model/portfolio-dto';
 
 @Injectable({
@@ -29,60 +28,15 @@ export class PortfolioService {
     return this.http.get<IPortfolio[]>(this.url+`/user/${idUser}`);
   }
 
-  postPortfolio(port: PortfolioDto) {
-    this.http.post<PortfolioDto>(this.url+"/", port, this.httpOptions).subscribe( (response) => {
-      Swal.fire(
-        'Added!',
-        `Portfolio: ${port.name} - added`,
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    );;
+  postPortfolio(port: PortfolioDto):Observable<any> {
+    return this.http.post<PortfolioDto>(this.url+"/", port, this.httpOptions);
   }
 
-  putPortfolio(port: PortfolioDto, id:number) {
-    this.http.put<PortfolioDto>(`${this.url}/${id}`, port, this.httpOptions).subscribe( (response) => {
-      Swal.fire(
-        'Edited!',
-        `Portfolio: ${port.name} - edited`,
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    );;
+  putPortfolio(port: PortfolioDto, id:number):Observable<any> {
+    return this.http.put<PortfolioDto>(`${this.url}/${id}`, port, this.httpOptions);
   }
   
-  deletePortfolio(id: number) {
-    this.http.delete<IPortfolio>(`${this.url}/${id}`).subscribe( (response) => {
-      Swal.fire(
-        'Added!',
-        `Skill deleted`,
-        'success'
-      )    
-    },
-      (error: HttpErrorResponse) => {
-        Swal.fire({
-          icon: 'error',
-          title: 'Oops, something went wrong.',
-          showConfirmButton: false,
-          timer: 1500
-        })
-      }
-    );;
+  deletePortfolio(id: number):Observable<any> {
+    return this.http.delete<IPortfolio>(`${this.url}/${id}`);
   }
 }
