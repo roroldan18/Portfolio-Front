@@ -8,7 +8,7 @@ import { PortfolioDto } from '../../model/portfolio-dto';
   providedIn: 'root'
 })
 export class PortfolioService {
-  private url = 'http://localhost:8080/portfolio';
+  private url = 'https://bknd-portfolio.herokuapp.com/portfolio';
   
   private httpOptions = {
     headers: new HttpHeaders({

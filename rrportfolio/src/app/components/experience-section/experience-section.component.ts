@@ -48,8 +48,6 @@ export class ExperienceSectionComponent implements OnInit {
   onEditExperience(experience:IExperience){
     const expDto:ExperienceDto = new ExperienceDto(experience.company, experience.title, experience.description,experience.timeWork, experience.startDate, experience.endDate, experience.logo, experience.isActual, this.idUser);
 
-    console.log(experience)
-
     this.experienceService.putExperience(expDto, experience.id).subscribe( (response) => {
       new Alerts("success", 'Edited', `Experience: ${experience.title} in ${experience.company} edited!`).showSuccess();
       this.experiences = unObjectExp(this.experiences, experience);

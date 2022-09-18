@@ -22,7 +22,7 @@
   <ng-container  *ngFor="let skill of skills">
     <div class="col-xl-3 col-lg-6 mb-4 position-relative divProgress">
       <div class="text-center">
-        <img *ngIf="this.skill.icon" src={{this.skill.icon}} alt={{this.skill.name}} class="imgHabil">
+        <img *ngIf="this.skill.icon" src={{this.skill.icon}} onerror="this.onerror=null;this.src='../../assets/no-image-icon-4.png'" alt={{this.skill.name}} class="imgHabil">
         <img *ngIf="!this.skill.icon" src="../../../assets/habilidades/no-photo.png" alt={{this.skill.name}} class="imgHabil">
         <p>{{this.skill.name}}</p>
       </div>

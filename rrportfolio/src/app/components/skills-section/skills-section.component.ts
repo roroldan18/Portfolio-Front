@@ -38,7 +38,7 @@ export class SkillsSectionComponent implements OnInit {
 
   ngOnInit(): void {
     this.skillService.getSkills().subscribe(skills => {
-      this.skills = skills;
+      this.skills = skills.sort((a:ISkill,b:ISkill)=> b.abilityPercentage - a.abilityPercentage);
     })
 
   }

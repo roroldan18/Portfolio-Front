@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 
 
 export class ExperiencesInfoService {
-  private url = 'http://localhost:8080/experience';
+  private url = 'https://bknd-portfolio.herokuapp.com/experience';
   
   private httpOptions = {
     headers: new HttpHeaders({

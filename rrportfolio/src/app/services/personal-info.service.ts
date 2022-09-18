@@ -9,7 +9,7 @@ import Swal from 'sweetalert2';
   providedIn: 'root'
 })
 export class PersonalInfoService {
-  private url = 'http://localhost:8080/profile';
+  private url = 'https://bknd-portfolio.herokuapp.com/profile';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

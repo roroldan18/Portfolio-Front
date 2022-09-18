@@ -35,7 +35,7 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit(): void {
     this.portfolioService.getPortfolio().subscribe( portfolio => {
-      this.portfolio = portfolio;
+      this.portfolio = portfolio.sort((a: IPortfolio, b: IPortfolio) => new Date(b.endDate).getTime() - new Date(a.endDate).getTime());
     })
   }
 

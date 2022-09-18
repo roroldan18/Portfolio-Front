@@ -27,8 +27,6 @@ export class AddExperienceComponent implements OnInit {
     this.experienceService.getExperiences().subscribe((experiences:IExperience[]) => {
       this.experiences = experiences;
     })
-    console.log(`experience`)
-    console.log(this.experience)
 
     if(this.addMode){
       this.formAddExperience = this.formBuilder.group({

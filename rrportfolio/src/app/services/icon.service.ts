@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ISocialNetworkIcon } from 'src/interfaces/interfaces';
 import { Observable } from 'rxjs';
 import { SocialNetworkDto } from 'src/model/social-network-dto';
-import Swal from 'sweetalert2';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class IconService {
-  private url = 'http://localhost:8080/socialnetwork';
+  private url = 'https://bknd-portfolio.herokuapp.com/socialnetwork';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

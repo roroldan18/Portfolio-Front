@@ -7,7 +7,7 @@ import { IUser } from 'src/interfaces/interfaces';
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'http://localhost:8080/users';
+  private url = 'https://bknd-portfolio.herokuapp.com/users';
 
   constructor(
     private http:HttpClient

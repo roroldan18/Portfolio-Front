@@ -15,7 +15,7 @@ const helper = new JwtHelperService();
 })
 
 export class LoginService {
-  private url = 'http://localhost:8080/auth/';
+  private url = 'https://bknd-portfolio.herokuapp.com/auth/';
   loggedIn = new BehaviorSubject<boolean>(false);
 
   constructor(

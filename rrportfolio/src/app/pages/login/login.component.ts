@@ -47,6 +47,7 @@ export class LoginComponent implements OnInit {
         this.tokenService.setAuthorities(data.authorities);
         this.roles = data.authorities;
         this.loginService.loggedIn.next(true);
+        this.router.navigateByUrl("/inicio");
       }, err => {
         Swal.fire(
           'Error on login!',
@@ -57,7 +58,6 @@ export class LoginComponent implements OnInit {
       })
 
 
-      this.router.navigateByUrl("/inicio");
 
     } else{
       this.loginService.loggedIn.next(false);
