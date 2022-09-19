@@ -1,4 +1,4 @@
-<div class="jumbotron jumbotron-fluid imgCover" [style.background]="'url('+ this.personalInfo.bannerImage + ')'">
+<div class="jumbotron jumbotron-fluid imgCover"  [ngStyle]="{'background': 'url('+ this.personalInfo.bannerImage + ') no-repeat', 'background-size':'cover'}" >
   <button *ngIf="this.loggedIn" class="btn btn-light" (click)="editBannerImageButton()"><img src="./assets/edit.png" alt="Lapiz de edición"></button>
 </div>
 
