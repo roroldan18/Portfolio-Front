@@ -11,7 +11,7 @@ import Swal from 'sweetalert2';
 
 
 export class ExperiencesInfoService {
-  private url = 'https://bknd-portfolio.herokuapp.com/experience';
+  private url = 'https://backend-portfolio-0evq.onrender.com/experience';
   
   private httpOptions = {
     headers: new HttpHeaders({

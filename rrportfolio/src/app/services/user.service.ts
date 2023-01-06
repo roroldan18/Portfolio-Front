@@ -7,7 +7,7 @@ import { IUser } from 'src/interfaces/interfaces';
   providedIn: 'root'
 })
 export class UserService {
-  private url = 'https://bknd-portfolio.herokuapp.com/users';
+  private url = 'https://backend-portfolio-0evq.onrender.com/users';
 
   constructor(
     private http:HttpClient

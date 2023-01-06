@@ -9,7 +9,7 @@ import { EducationDto } from '../../model/education-dto';
   providedIn: 'root'
 })
 export class EducationService {
-  private url:string = 'https://bknd-portfolio.herokuapp.com/education';
+  private url:string = 'https://backend-portfolio-0evq.onrender.com/education';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

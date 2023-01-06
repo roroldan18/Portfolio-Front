@@ -9,7 +9,7 @@ import { SocialNetworkDto } from 'src/model/social-network-dto';
   providedIn: 'root'
 })
 export class IconService {
-  private url = 'https://bknd-portfolio.herokuapp.com/socialnetwork';
+  private url = 'https://backend-portfolio-0evq.onrender.com/socialnetwork';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'

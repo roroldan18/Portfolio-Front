@@ -10,7 +10,7 @@ import Swal from 'sweetalert2';
 })
 
 export class SkillsService {
-  private url = 'https://bknd-portfolio.herokuapp.com/skill';
+  private url = 'https://backend-portfolio-0evq.onrender.com/skill';
   private httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json'
